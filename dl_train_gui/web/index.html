@@ -1,11 +1,34 @@
 <html>
     <head>
-        <title>dl_train_gui</title>
+        <title>Deep Learning Training GUI</title>
+        <link rel="icon" href="img/neural_net.ico"></link>
         <script type="text/javascript" src="/eel.js"></script>
+        <script type="text/javascript" src="js/callbacks.js"></script>
+        <link rel="stylesheet" href="css/controls.css"></link>
+        <link rel="stylesheet" href="css/general.css"></link>
+        <link rel="stylesheet" href="css/main.css"></link>
     </head>
     <body>
-        <div>
-            This is main page.
+        <div id="header">            
+            <div id="supportlinks">
+                <a href="https://github.com/kengboon/dl_train_gui" target="_blank"><span class="title">GitHub</span><img src="img/github.svg" /></a><br/>
+                <a href="https://ko-fi.com/woolf42" target="_blank"><span class="title">Support me on Ko-fi</span><img src="img/kofi.svg" /></a>
+            </div>
+            <div id="title" class="title"><img src="img/neural_net.png" height="36"/> Deep Learning Training GUI</div>
         </div>
+        <button type="button" class="collapsible title">Training Parameters</button>
+        <div class="collapsible-content" style="display: block;">
+            Add here...
+        </div>
+        <div>
+            Epoch <span id="curr_epoch">0</span> of <span id="max_epoch">0</span>
+            <br/>
+            <span id="curr_status" style="font-weight:bold">IDLE</span>
+            <br/>
+            <a href="javascript:void(0)" onclick="javascript:eel.start_train()">Start</a> 
+            <a href="javascript:void(0)" onclick="javascript:eel.abort_train()">Abort</a>
+        </div>
+
+        <script type="text/javascript" src="js/controls.js"></script>
     </body>
 </html>

@@ -1,0 +1,14 @@
+body
+{
+    background: whitesmoke;
+}
+
+a, a:visited
+{
+    color: #0074CC;
+}
+
+a:hover
+{
+    color: goldenrod;
+}

@@ -1,0 +1,27 @@
+.collapsible
+{
+    text-align: left;
+    cursor: pointer;
+    padding: 5px;
+    width: 100%;
+    border: none;
+    outline: none;
+    background-color: dodgerblue;
+    color: white;
+}
+
+.collapsible:hover
+{
+    background-color: #ccc;
+    color: #000;
+}
+
+.collapsible-content
+{
+    padding: 0 18px;
+    display: none;
+    overflow: hidden;
+    background-color: #f1f1f1;
+    transition: max-height 0.2s ease-out;
+    border: #ccc 1px dashed;
+  }
