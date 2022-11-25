@@ -23,8 +23,8 @@ class DemoProgram:
     def init_train_param(self):
         # Implement initialize training paramters here
         self.train_params['train_data'] = ['Train dataset', r'd:\data\train']
-        self.train_params['max_epoch'] = ['Max epoch', 100, 'int', 1, 9999999, 0]
-        self.train_params['lr'] = ['Learning rate', 0.01, 'float', 0.001, 1, 3]
+        self.train_params['max_epoch'] = ['Max epoch', 100, 'int', 1, 9999999]
+        self.train_params['lr'] = ['Learning rate', 0.01, 'float', 0.001, 1, 0.001]
         self.train_params['optimizer'] = ['Optimizer', 'Adam', 'choices', None, None, None, ['Adam', 'RMSProp', 'SGD']]
         self.train_params['earlystopping'] = ['Early Stopping', True, 'bool']
         self.params_callback(self.train_params)

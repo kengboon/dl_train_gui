@@ -28,9 +28,8 @@ function createTextInput(id, caption, value)
     form.innerHTML = form.innerHTML + input;
 }
 
-function createNumberInput(id, caption, value, min, max, d_points)
+function createNumberInput(id, caption, value, min, max, step)
 {
-    var step = Math.pow(10, -d_points);
     var input = "<p><label class=\"field-label\" for=\"" + id + "\">" + caption + "</label>";
     input = input + "<input type=\"number\" name=\"" + id + "\" value=\"" + value
         + "\" min=\"" + min + "\" max=\"" + max +"\" step=\"" + step + "\"></input></p>";

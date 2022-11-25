@@ -47,7 +47,7 @@ def init_params_callback(param_dict):
         if len(param_info) < 3:
             eel.js_train_param_callback(param_id, param_info[0], param_info[1])
         elif param_info[2] in ['integer', 'int']:
-            eel.js_train_param_callback(param_id, param_info[0], param_info[1], param_info[2], param_info[3], param_info[4])
+            eel.js_train_param_callback(param_id, param_info[0], param_info[1], param_info[2], param_info[3], param_info[4], param_info[5] if len(param_info) > 5 else 1)
         elif param_info[2] in ['number', 'float', 'double']:
             eel.js_train_param_callback(param_id, param_info[0], param_info[1], param_info[2], param_info[3], param_info[4], param_info[5])
         elif param_info[2] in ['enum', 'enums', 'options', 'choices']:
