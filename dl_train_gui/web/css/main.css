@@ -14,7 +14,7 @@ div#supportlinks
 {
     float:right;
     display: block;
-    margin: 0 1em .5em 1em;
+    margin: 0 0 1em 1em;
     text-align: right;
     font-size:.75em;
 }
@@ -22,11 +22,16 @@ div#supportlinks
 div#supportlinks img
 {
     height: 20px;
-    margin-left: 0.5em;
+    margin-left: .5em;
     vertical-align: bottom;
 }
 
 .title
 {
     font-weight: bold;
+}
+
+form label
+{
+    padding-right: .5em;
 }

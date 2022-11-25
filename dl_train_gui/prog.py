@@ -1,37 +1,51 @@
 from enum import Enum
-from threading import Thread
-import time
+import eel
 
 class Status(Enum):
     IDLE = 0
     TRAINING = 1
     END = 2
-    ABORT = 3
-    ERROR = 4
+    ABORTING = 3
+    ABORTED = 4
+    ERROR = 5
 
 class DemoProgram:
-    def __init__(self, callbacks):
+    def __init__(self):
         self.status = Status.IDLE
+        self.train_params = {}
+        self.abort = False
+
+    def hook(self, callbacks):
         self.status_callback = callbacks[0]
         self.epoch_callback = callbacks[1]
-        self.thread = None
+
+    def init_train_param(self):
+        self.train_params['max_epoch'] = 100
+        pass
+
+    def set_train_param(self, param_name, param_value):
+        self.train_params[param_name] = param_value
 
     def set_status(self, status):
         self.status = status
         self.status_callback(status.name)
 
-    def train(self, args):
+    def train(self):
         self.set_status(Status.TRAINING)
-        for i in range(100):
-            self.epoch_callback(i+1, 100)
-            time.sleep(1)
+        # Implement your training code here
+        for i in range(self.train_params['max_epoch']):
+            if self.abort:
+                self.abort = False
+                self.set_status(Status.ABORTED)
+                return
+            self.epoch_callback(i+1, self.train_params['max_epoch'])
+            eel.sleep(1)
         self.set_status(Status.END)
 
-    def start_train(self, args):
+    def start_train(self):
         self.set_status(Status.TRAINING)
-        self.thread = Thread(target=self.train, args=[args])
-        self.thread.start()
+        eel.spawn(self.train)
 
     def abort_train(self):
-        self.set_status(Status.ABORT)
-        pass
+        self.set_status(Status.ABORTING)
+        self.abort = True

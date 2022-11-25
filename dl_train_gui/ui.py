@@ -5,10 +5,13 @@ from dl_train_gui import config
 from dl_train_gui.prog import DemoProgram
 
 class UI:
-    def __init__(self):
-        eel.init(config.ASSET_FOLDER)
+    program = None
 
-    def start(self):
+    def __init__(self, prog=None):
+        eel.init(config.ASSET_FOLDER)
+        UI.program = prog
+
+    def start_ui(self):
         try:
             # Check Chrome installed
             chrome_instance_path = chrome.find_path()
@@ -21,24 +24,26 @@ class UI:
         except Exception as ex:
             print(ex)
 
-current_program = None
+@eel.expose
+def init():
+    callbacks = [status_callback, epoch_callback]
+    UI.program.hook(callbacks)
+    UI.program.init_train_param()
 
 @eel.expose
 def start_train():
-    global current_program
-    callbacks = [status_callback, epoch_callback]
-    current_program = DemoProgram(callbacks)
-    current_program.start_train(None)
+    UI.program.start_train()
 
 @eel.expose
 def abort_train():
-    global current_program
-    if current_program is not None:
-        current_program.abort_train()
-        current_program = None
+    UI.program.abort_train()
+
+@eel.expose
+def set_train_param(param_name, param_value):
+    UI.program.set_train_param(param_name, param_value)
 
 def status_callback(status):
-    eel.status_callback(status)
+    eel.js_status_callback(status)
 
 def epoch_callback(i, j):
-    eel.epoch_callback(i, j)
+    eel.js_epoch_callback(i, j)

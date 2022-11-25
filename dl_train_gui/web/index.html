@@ -4,6 +4,7 @@
         <link rel="icon" href="img/neural_net.ico"></link>
         <script type="text/javascript" src="/eel.js"></script>
         <script type="text/javascript" src="js/callbacks.js"></script>
+        <script type="text/javascript" src="js/controls.js"></script>
         <link rel="stylesheet" href="css/controls.css"></link>
         <link rel="stylesheet" href="css/general.css"></link>
         <link rel="stylesheet" href="css/main.css"></link>
@@ -17,9 +18,9 @@
             <div id="title" class="title"><img src="img/neural_net.png" height="36"/> Deep Learning Training GUI</div>
         </div>
         <button type="button" class="collapsible title">Training Parameters</button>
-        <div class="collapsible-content" style="display: block;">
-            Add here...
-        </div>
+        <div class="collapsible-content"><form id="train_params"></form></div>
+        <script>eel.init();
+        js_train_param_callback("id", "caption", "value", "text", 0, 0, 0, "")</script>
         <div>
             Epoch <span id="curr_epoch">0</span> of <span id="max_epoch">0</span>
             <br/>
@@ -28,7 +29,6 @@
             <a href="javascript:void(0)" onclick="javascript:eel.start_train()">Start</a> 
             <a href="javascript:void(0)" onclick="javascript:eel.abort_train()">Abort</a>
         </div>
-
-        <script type="text/javascript" src="js/controls.js"></script>
+        <script>UpdateCollapsible();</script>
     </body>
 </html>
