@@ -2,7 +2,7 @@ import os, sys
 import eel
 from eel import chrome
 from dl_train_gui import config
-from dl_train_gui.prog import create_default_program
+from dl_train_gui.util import create_default_program
 
 class UI:
     program = None
