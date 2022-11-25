@@ -1,20 +1,32 @@
 # <img src="https://github.com/kengboon/dl_train_gui/blob/dev/dl_train_gui/web/img/neural_net.png" height="36"/> Deep Learning Training GUI
-Python GUI for deep learning training, built using [Eel](https://github.com/python-eel/Eel).
+Python ↔ HTML/JS GUI for deep learning training, built using [Eel](https://github.com/python-eel/Eel).
+
+**dl_train_gui** acts as a container to the training code (no constraint on the deep learning framework), and provide a generic GUI for deep learning training task.
 
 ## Usage
-**dl_train_gui** acts as a extension to the training script (hence no constraint on the deep learning framework), and provide a generic GUI for deep learning training task.
+Inherit from or override the [```Program``` class](https://github.com/kengboon/dl_train_gui/blob/dev/dl_train_gui/prog.py).
 
-The training script should implements:
-- ```set_train_params``` - assign training params from UI to your training script
-- ```train``` - the entry point of training task
-- ```start_train``` - starting of training tread
-- ```abort_train``` - abort the training task and thread
+Following implementations required:
+- ```init_train_param``` - define a list of hyperparameters to be populated on UI form
+- ```set_train_params``` - set the values of hyperparameters from UI form into training code
+- ```train``` - the entry point of training code
 
 And hooked to callbacks below:
 - ```status_callback``` - to update the training status such as running, error, cancelled, etc. to UI
-- ```epoch_callback``` - to update the epoch count to UI
-- ```train_performance_callback``` - to update train performance info to UI
-- ```train_vis_callback``` - to update live train performance visualization to UI
-- ```message_callback``` - to update miscellaneous messages to UI
+- ```epoch_callback``` - to update the epoch count and progress to UI
+- ```epoch_end_callback``` - to indicate end of epoch and record performance
+- ```vis_callback``` - to send visualization to UI (optional)
+- ```message_callback``` - to send miscellaneous messages to UI
 
-An dummy implementation can be found [here](https://github.com/kengboon/dl_train_gui/blob/dev/dl_train_gui/prog.py).
+## Build as distributable binary
+[PyInstaller](https://github.com/pyinstaller/pyinstaller) is included in [Eel](https://github.com/python-eel/Eel).
+
+A sample command can be found at [this batch file](https://github.com/kengboon/dl_train_gui/blob/dev/build.bat), include all required packages with ```--hidden-import``` if intended to build as single executable.
+
+Read the [documentation for PyInstaller](https://pyinstaller.org/en/stable/) for more options.
+
+## Attributes
+Favicon comes from [artificial intelligence icon pack](https://www.flaticon.com/packs/artificial-intelligence-261) by Freepik.
+
+## If this is helpful, buy me a ☕
+<a href="https://ko-fi.com/woolf42" target="_blank"><img src="https://user-images.githubusercontent.com/5046671/197377067-ce6016ae-6368-47b6-a4eb-903eb7b0af9c.png" width="200" alt="Support me on Ko-fi"/></a>
