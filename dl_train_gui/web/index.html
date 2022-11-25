@@ -21,14 +21,19 @@
         <section id="train_param_section">
             <button type="button" class="collapsible title" id="train_param_header">Training Parameters</button>
             <div class="collapsible-content" id="train_param_content" style="display:block"><form id="train_params"></form></div>
-        </section>        
-        <section id="operation_button_section">
-            Epoch <span id="curr_epoch">0</span> of <span id="max_epoch">0</span>
-            <br/>
+        </section>
+        <section id="operation_button_section">            
+            <button onclick="start_train()" id="start_train_btn">Start</button> 
+            <button onclick="abort_train()" id="abort_train_btn">Abort</button>            
             <span id="curr_status" style="font-weight:bold">IDLE</span>
             <br/>
-            <a href="javascript:void(0)" onclick="start_train()">Start</a> 
-            <a href="javascript:void(0)" onclick="abort_train()">Abort</a>
+            Epoch <span id="curr_epoch">0</span> of <span id="max_epoch">0</span><span id="epoch_progress"></span>
+        </section>        
+        <section id="history_section">
+            <button type="button" class="collapsible title">Histories</button>
+            <div class="collapsible-content" id="history_content" style="display:block">
+                <table/>
+            </div>
         </section>
         <div id="spinner-root" class="loading-spinner-wrapper">
             <div>

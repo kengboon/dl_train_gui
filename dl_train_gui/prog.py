@@ -21,8 +21,11 @@ class Program:
 
     def hook(self, callbacks):
         self.status_callback = callbacks[0]
-        self.epoch_callback = callbacks[1]
-        self.params_callback = callbacks[2]
+        self.params_callback = callbacks[1]
+        self.epoch_callback = callbacks[2]
+        self.epoch_end_callback = callbacks[3]
+        self.vis_callback = callbacks[4]
+        self.message_callback = callbacks[5]
 
     def init_train_param(self):
         # Implement initialize training paramters here
@@ -50,13 +53,32 @@ class Program:
         self.set_status(Status.TRAINING)
         # Implement training code here
         for i in range(self.get_train_param('max_epoch')):
-            if self.abort:
-                self.abort = False
-                self.set_status(Status.ABORTED)
+            if self.do_abort():
                 return
-            self.epoch_callback(i+1, self.get_train_param('max_epoch'))
-            eel.sleep(1)
+            step = 10
+            for j in range(step):
+                if self.do_abort():
+                    return
+                progress = ''
+                for k in range(step):
+                    if k <= j:
+                        marker = '='
+                    elif k == j + 1:
+                        marker = '>'
+                    else:
+                        marker = ' . '
+                    progress = progress + marker
+                progress = '[' + progress + ']'
+                self.epoch_callback(i+1, self.get_train_param('max_epoch'), progress)
+                eel.sleep(.1)
+            self.epoch_end_callback(i+1, {'Loss': 1})
         self.set_status(Status.END)
+
+    def do_abort(self):
+        if self.abort:
+            self.abort = False
+            self.set_status(Status.ABORTED)
+            return True
 
     def start_train(self):
         self.set_status(Status.TRAINING)

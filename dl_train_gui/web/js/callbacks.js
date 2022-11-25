@@ -17,7 +17,7 @@ function js_status_callback(status, idle=true)
 }
 
 eel.expose(js_epoch_callback);
-function js_epoch_callback(i, j)
+function js_epoch_callback(i, j, progress="")
 {
     document.getElementById("curr_epoch").innerText = i;
     if (j >= i)
@@ -27,6 +27,14 @@ function js_epoch_callback(i, j)
     else
     {
         document.getElementById("max_epoch").innerText = i;
+    }
+    if (progress != "")
+    {
+        document.getElementById("epoch_progress").innerText = " : " + progress;
+    }
+    else
+    {
+        document.getElementById("epoch_progress").innerText = "";
     }
 }
 
@@ -60,4 +68,21 @@ function js_train_param_callback(id, caption, value, type=null, min=0, max=1, st
             createTextInput(id, caption, value);
             break;
     }
+}
+
+eel.expose(js_epoch_end_callback)
+function js_epoch_end_callback(epoch, perf_info, is_checkpoint=false, checkpoint_info="")
+{
+}
+
+eel.expose(js_vis_callback)
+function js_vis_callback()
+{
+
+}
+
+eel.expose(js_message_callback)
+function js_message_callback(msg, type="info")
+{
+
 }

@@ -103,7 +103,7 @@ function createRadioInput(id, caption, value, choices)
         }
         input = input + ">";
         input = input + "<label>" + choices[i] + "</label>";
-        input = input + "</input>";
+        input = input + "</input>&nbsp;";
     }
     input = input + "</p>";
     var form = document.getElementById("train_params");

@@ -2,7 +2,7 @@
 {
     text-align: left;
     cursor: pointer;
-    padding: 5px;
+    padding: .3em .5em;
     width: 100%;
     border: none;
     outline: none;
@@ -18,7 +18,7 @@
 
 .collapsible-content
 {
-    padding: 0 5px;
+    padding: 0 .5em;
     display: block;
     overflow: hidden;
     background-color: #f1f1f1;

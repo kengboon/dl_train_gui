@@ -13,12 +13,13 @@ class UI:
 
     def start_ui(self):
         try:
+            size = (550, 650)
             # Check Chrome installed
             chrome_instance_path = chrome.find_path()
             if chrome_instance_path is not None and os.path.exists(chrome_instance_path):
-                eel.start('index.html', port=0, size=(600, 400))
+                eel.start('index.html', port=0, size=size)
             elif sys.platform in ['win32', 'win64']:
-                eel.start('index.html', port=0, size=(600, 400), mode='edge')
+                eel.start('index.html', port=0, size=size, mode='edge')
             else:
                 print('Chrome is not installed.')
         except Exception as ex:
@@ -28,7 +29,7 @@ class UI:
 def init():
     if UI.program is None:
         UI.program = create_default_program()
-    callbacks = [status_callback, epoch_callback, init_params_callback]
+    callbacks = [status_callback, init_params_callback, epoch_callback, epoch_end_callback, vis_callback, message_callback]
     UI.program.hook(callbacks)
     UI.program.init_train_param()
     eel.js_init_comp_callback();
@@ -64,5 +65,14 @@ def init_params_callback(param_dict):
 def status_callback(status, idle=True):
     eel.js_status_callback(status, idle)
 
-def epoch_callback(i, j):
-    eel.js_epoch_callback(i, j)
+def epoch_callback(i, j, progress=''):
+    eel.js_epoch_callback(i, j, progress)
+
+def epoch_end_callback(i, perf_info, is_checkpoint=False, checkpoint_info=''):
+    eel.js_epoch_end_callback(i, perf_info, is_checkpoint, checkpoint_info)
+
+def vis_callback():
+    eel.js_vis_callback()
+
+def message_callback(msg, type='info'):
+    eel.js_message_callback(msg, type)
