@@ -2,6 +2,7 @@ import os, sys
 import eel
 from eel import chrome
 from dl_train_gui import config
+from dl_train_gui.prog import create_default_program
 
 class UI:
     program = None
@@ -25,9 +26,12 @@ class UI:
 
 @eel.expose
 def init():
+    if UI.program is None:
+        UI.program = create_default_program()
     callbacks = [status_callback, epoch_callback, init_params_callback]
     UI.program.hook(callbacks)
     UI.program.init_train_param()
+    eel.js_init_comp_callback();
 
 @eel.expose
 def start_train():
@@ -57,8 +61,8 @@ def init_params_callback(param_dict):
         else:
             eel.js_train_param_callback(param_id, param_info[0], param_info[1])
 
-def status_callback(status):
-    eel.js_status_callback(status)
+def status_callback(status, idle=True):
+    eel.js_status_callback(status, idle)
 
 def epoch_callback(i, j):
     eel.js_epoch_callback(i, j)

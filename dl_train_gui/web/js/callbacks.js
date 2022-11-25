@@ -1,8 +1,19 @@
 // The functions can be called from Python via eel.function_name()
+eel.expose(js_init_comp_callback)
+function js_init_comp_callback()
+{
+    UpdateCollapsible();
+    UpdateControls();
+    hideSpinner();
+}
+
+
 eel.expose(js_status_callback);
-function js_status_callback(status)
+function js_status_callback(status, idle=true)
 {
     document.getElementById("curr_status").innerText = status;
+    set_train_params_enable(idle);
+
 }
 
 eel.expose(js_epoch_callback);

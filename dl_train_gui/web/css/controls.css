@@ -18,7 +18,6 @@
 
 .collapsible-content
 {
-    max-height: 0;
     padding: 0 5px;
     display: block;
     overflow: hidden;

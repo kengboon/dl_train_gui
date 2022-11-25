@@ -2,14 +2,18 @@ from enum import Enum
 import eel
 
 class Status(Enum):
+    ERROR = -2
     IDLE = 0
     TRAINING = 1
     END = 2
     ABORTING = 3
     ABORTED = 4
-    ERROR = 5
 
-class DemoProgram:
+def create_default_program():
+    return Program()
+
+# You may inherit this class
+class Program:
     def __init__(self):
         self.status = Status.IDLE
         self.train_params = {}
@@ -23,6 +27,7 @@ class DemoProgram:
     def init_train_param(self):
         # Implement initialize training paramters here
         self.train_params['train_data'] = ['Train dataset', r'd:\data\train']
+        self.train_params['val_data'] = ['Validation dataset', r'd:\data\val']
         self.train_params['max_epoch'] = ['Max epoch', 100, 'int', 1, 9999999]
         self.train_params['lr'] = ['Learning rate', 0.01, 'float', 0.001, 1, 0.001]
         self.train_params['optimizer'] = ['Optimizer', 'Adam', 'choices', None, None, None, ['Adam', 'RMSProp', 'SGD']]
@@ -36,7 +41,7 @@ class DemoProgram:
 
     def set_status(self, status):
         self.status = status
-        self.status_callback(status.name)
+        self.status_callback(status.name, status.value % 2 == 0)
 
     def get_train_param(self, param_id):
         return self.train_params[param_id][1]

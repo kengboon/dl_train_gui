@@ -10,25 +10,30 @@
         <link rel="stylesheet" href="css/general.css"></link>
         <link rel="stylesheet" href="css/main.css"></link>
     </head>
-    <body>
-        <div id="header">            
+    <body onload="run_init()" onresize="UpdateLayouts()">
+        <header>
             <div id="supportlinks">
                 <a href="https://github.com/kengboon/dl_train_gui" target="_blank"><span class="title">GitHub</span><img src="img/github.svg" /></a><br/>
                 <a href="https://ko-fi.com/woolf42" target="_blank"><span class="title">Support me on Ko-fi</span><img src="img/kofi.svg" /></a>
             </div>
             <div id="title" class="title"><img src="img/neural_net.png" height="36"/> Deep Learning Training GUI</div>
-        </div>
-        <button type="button" class="collapsible title">Training Parameters</button>
-        <div class="collapsible-content" style="max-height:99999px;"><form id="train_params"></form></div>
-        <script>eel.init();</script>
-        <div>
+        </header>
+        <section id="train_param_section">
+            <button type="button" class="collapsible title" id="train_param_header">Training Parameters</button>
+            <div class="collapsible-content" id="train_param_content" style="display:block"><form id="train_params"></form></div>
+        </section>        
+        <section id="operation_button_section">
             Epoch <span id="curr_epoch">0</span> of <span id="max_epoch">0</span>
             <br/>
             <span id="curr_status" style="font-weight:bold">IDLE</span>
             <br/>
-            <a href="javascript:void(0)" onclick="javascript:start_train()">Start</a> 
-            <a href="javascript:void(0)" onclick="javascript:abort_train()">Abort</a>
+            <a href="javascript:void(0)" onclick="start_train()">Start</a> 
+            <a href="javascript:void(0)" onclick="abort_train()">Abort</a>
+        </section>
+        <div id="spinner-root" class="loading-spinner-wrapper">
+            <div>
+                <div class="loading-spinner"></div>
+            </div>
         </div>
-        <script>UpdateCollapsible();</script>
     </body>
 </html>

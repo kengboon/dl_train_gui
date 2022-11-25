@@ -8,17 +8,58 @@ function UpdateCollapsible()
         {
             this.classList.toggle("active");
             var content = this.nextElementSibling;
-            if (content.style.maxHeight)
+            if (content.style.display == "block")
             {
-                content.style.maxHeight = null;
+                content.style.display = "none";
             }
             else
             {
-                content.style.maxHeight = 99999;
+                content.style.display = "block";
             }
         });
     }
 }
+
+function UpdateControls()
+{
+    updateFormLabelSize();
+    UpdateLayouts();
+}
+
+function hideSpinner()
+{
+    document.getElementById("spinner-root").style.display = "none";
+}
+
+function updateFormLabelSize()
+{
+    let max_width = 120;
+    let params = document.forms["train_params"].getElementsByTagName("p");
+    let labels = [];
+    for (let i = 0; i < params.length; i++)
+    {
+        let _labels = params[i].getElementsByClassName("field-label");
+        for (let j = 0; j < _labels.length; j++)
+        {
+            if (_labels[j].offsetWidth > max_width)
+            {
+                max_width = _labels[j].offsetWidth;
+            }
+            labels.push(_labels[j]);
+        }
+    }
+    console.log(labels);
+    for (let i = 0; i < labels.length; i++)
+    {
+        labels[i].style.width = max_width;
+    }
+
+}
+
+function UpdateLayouts()
+{
+}
+
 
 function createTextInput(id, caption, value)
 {
