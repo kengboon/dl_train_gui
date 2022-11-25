@@ -1,0 +1,18 @@
+# This CITATION.cff file was generated with cffinit.
+# Visit https://bit.ly/cffinit to generate yours today!
+
+cff-version: 1.2.0
+title: Deep Learning Training GUI (dl_train_gui)
+message: >-
+  If you use this software, please cite it using the
+  metadata from this file.
+type: software
+authors:
+  - given-names: Keng Boon
+    family-names: Teo
+    orcid: 'https://orcid.org/0000-0001-8128-1948'
+repository-code: 'https://github.com/kengboon/dl_train_gui'
+abstract: >-
+  Python ↔ HTML/JS GUI for deep learning training,
+  built using Eel.
+license: Apache-2.0
