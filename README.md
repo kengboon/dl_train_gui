@@ -4,7 +4,7 @@ Python ↔ HTML/JS GUI for deep learning training, built using [Eel](https://git
 **dl_train_gui** acts as a container to the training code (no constraint on the deep learning framework), and provide a generic GUI for deep learning training task.
 
 ## Usage
-Inherit from or override the [```Program``` class](https://github.com/kengboon/dl_train_gui/blob/dev/dl_train_gui/prog.py).
+Inherit from or override the [```Program```](https://github.com/kengboon/dl_train_gui/blob/dev/dl_train_gui/prog.py) class (see [sample](https://github.com/kengboon/dl_train_gui/blob/dev/dl_train_gui/demo.py)).
 
 Following implementations required:
 - ```init_train_param``` - define a list of hyperparameters to be populated on UI form
