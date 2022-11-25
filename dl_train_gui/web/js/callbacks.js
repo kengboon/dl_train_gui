@@ -20,10 +20,34 @@ function js_epoch_callback(i, j)
 }
 
 eel.expose(js_train_param_callback)
-function js_train_param_callback(id, caption, value, type, min, max, decimal, choices)
+function js_train_param_callback(id, caption, value, type=null, min=0, max=1, d_points=0, choices=null)
 {
     switch (type)
     {
+        case "int":
+        case "integer":
+            createNumberInput(id, caption, value, min, max, 0);
+            break;
+
+        case "number":
+        case "float":
+        case "double":
+            createNumberInput(id, caption, value, min, max, d_points);
+            break;
+
+        case "checkbox":
+        case "bool":
+        case "boolean":
+            createCheckBoxInput(id, caption, value);
+            break;
+
+        case "choices":
+        case "options":
+        case "enum":
+        case "enums":
+            createRadioInput(id, caption, value, choices)
+            break;
+
         default:
             createTextInput(id, caption, value);
             break;

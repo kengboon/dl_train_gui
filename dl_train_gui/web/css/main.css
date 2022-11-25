@@ -31,7 +31,10 @@ div#supportlinks img
     font-weight: bold;
 }
 
-form label
+label.field-label
 {
     padding-right: .5em;
+    min-width: 120px;
+    display: inline-block;
+    font-weight: bold;
 }

@@ -4,6 +4,8 @@ from dl_train_gui.ui import UI
 
 def run():
     print('dl_train_gui ' + __version__)
+
+    # Load your program implementation here
     gui = UI(DemoProgram())
     gui.start_ui()
 

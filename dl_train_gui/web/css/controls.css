@@ -18,10 +18,11 @@
 
 .collapsible-content
 {
+    max-height: 0;
     padding: 0 5px;
     display: block;
     overflow: hidden;
     background-color: #f1f1f1;
-    transition: max-height 0.2s ease-out;
+    transition: max-height .1s ease-out;
     border: #ccc 1px dashed;
   }
