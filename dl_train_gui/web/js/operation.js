@@ -29,20 +29,21 @@ function GetCompanyInfo()
                 document.getElementById("supportlinks").style.display = "none";
                 document.getElementById("company-info").style.display = "block";
 
-                let logo = "<img alt=\"" + logoInfo[0] + "\" src=\"img\/" + logoInfo[1] + "\"";
+                let content = "<img alt=\"" + logoInfo[0] + "\" src=\"img\/" + logoInfo[1] + "\"";
                 if (logoInfo[2] == "height")
                 {
-                    logo = logo + " height=\"" + logoInfo[3] + "\"\/>";
+                    content = content + " height=\"" + logoInfo[3] + "\"\/>";
                 }
                 else if (logoInfo[2] == "width")
                 {
-                    logo = logo + " width=\"" + logoInfo[4] + "\"\/>";
+                    content = content + " width=\"" + logoInfo[4] + "\"\/>";
                 }
                 else if (logoInfo[2] == "resize")
                 {
-                    logo = logo + " height=\"" + logoInfo[3] + "\" width=\"" + logoInfo[4] + "\"\/>";
+                    content = content + " height=\"" + logoInfo[3] + "\" width=\"" + logoInfo[4] + "\"\/>";
                 }
-                document.getElementById("company-info").innerHTML = logo;
+                content = content + "<p>" + logoInfo[5] + "</p>";
+                document.getElementById("company-info").innerHTML = content;
             }
         }
     );

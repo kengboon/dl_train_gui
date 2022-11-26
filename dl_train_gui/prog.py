@@ -44,5 +44,6 @@ class Program:
         eel.spawn(self.train)
 
     def abort_train(self):
-        self.set_status(Status.ABORTING)
-        self.abort = True
+        if self.status is Status.TRAINING:
+            self.set_status(Status.ABORTING)
+            self.abort = True

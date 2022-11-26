@@ -1,20 +1,17 @@
 header
 {
-    display: block;
-    margin: 0 auto .5em;
+    display: grid;
+    grid-template-columns: auto auto;
+    margin: 0 auto;
 }
 
 header #title
 {
     font-size: 1.5em;
-    margin-bottom: .5em;
-    display: inline;
 }
 
 header #software-info
 {
-    float:right;
-    display: block;
     margin: 0 0 1em 1em;
     text-align: right;
     font-size:.75em;
@@ -25,6 +22,11 @@ header #supportlinks img
     height: 20px;
     margin-left: .5em;
     vertical-align: bottom;
+}
+
+header #company-info
+{
+    font-weight: bold;
 }
 
 header #build-info

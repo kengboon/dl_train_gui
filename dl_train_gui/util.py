@@ -18,7 +18,8 @@ class Mode(Enum):
 def get_company_logo():
     name = 'Company Name'
     path = 'company_logo.png'
+    copyright = '&#169; 2022 Company Name'
     display_mode = Mode.NONE.value
     height = 24
     width = 80
-    return [name, path, display_mode, height, width]
+    return [name, path, display_mode, height, width, copyright]
