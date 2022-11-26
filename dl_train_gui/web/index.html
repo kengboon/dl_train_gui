@@ -3,14 +3,22 @@
         <title>Deep Learning Training GUI</title>
         <link rel="icon" href="img/neural_net.ico"></link>
         <script type="text/javascript" src="/eel.js"></script>
+        <script type="text/javascript" src="js/libs/billboard.pkgd.min.js"></script>
         <script type="text/javascript" src="js/callbacks.js"></script>
         <script type="text/javascript" src="js/controls.js"></script>
         <script type="text/javascript" src="js/operation.js"></script>
+        <script type="text/javascript" src="js/vis.js"></script>
+        <link rel="stylesheet" href="css/libs/billboard.min.css"></link>
         <link rel="stylesheet" href="css/controls.css"></link>
         <link rel="stylesheet" href="css/general.css"></link>
         <link rel="stylesheet" href="css/main.css"></link>
     </head>
-    <body onload="RunInit()" onresize="UpdateLayouts()">
+    <body onload="RunInit()" onresize="UpdateLayouts()">        
+        <div id="spinner-root" class="loading-spinner-wrapper">
+            <div>
+                <div class="loading-spinner"></div>
+            </div>
+        </div>
         <header>
             <div id="supportlinks">
                 <a href="https://github.com/kengboon/dl_train_gui" target="_blank"><span class="title">GitHub</span><img src="img/github.svg" /></a><br/>
@@ -23,22 +31,21 @@
             <div class="collapsible-content" id="train_param_content" style="display:block"><form id="train_params"></form></div>
         </section>
         <section id="operation_button_section">            
-            <button onclick="StartTrain()" id="start_train_btn">Start</button> 
-            <button onclick="AbortTrain()" id="abort_train_btn">Abort</button>            
-            <span id="curr_status" style="font-weight:bold">IDLE</span>
-            <br/>
-            Epoch <span id="curr_epoch">0</span> of <span id="max_epoch">0</span><span id="epoch_progress"></span>
-        </section>        
-        <section id="history_section">
-            <button type="button" class="collapsible title">Histories</button>
-            <div class="collapsible-content" id="history_content" style="display:block">
-                <table/>
+            <button type="button" class="collapsible title">Training Operation</button>
+            <div class="collapsible-content" style="display:block">
+                <div id="operation_button_content">
+                    <button onclick="StartTrain()" id="start_train_btn">Start</button> 
+                    <button onclick="AbortTrain()" id="abort_train_btn" disabled>Abort</button>            
+                    <span id="curr_status" style="font-weight:bold">IDLE</span>
+                    <br/>
+                    Epoch <span id="curr_epoch">0</span> of <span id="max_epoch">0</span><span id="epoch_progress"></span>
+                </div>
             </div>
         </section>
-        <div id="spinner-root" class="loading-spinner-wrapper">
-            <div>
-                <div class="loading-spinner"></div>
+        <section id="history_section">
+            <button type="button" class="collapsible title">Histories</button>
+            <div class="collapsible-content" id="history_content">
             </div>
-        </div>
+        </section>
     </body>
 </html>

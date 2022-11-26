@@ -44,10 +44,17 @@ label.field-label
     overflow: auto;
 }
 
-#operation_button_section
+.train_param_title
 {
-    padding: .3em .5em;
-    border: #ccc 1px dashed;
+    font-size: 1.1em;
+    color:dodgerblue;
+    font-weight: bold;
+    margin-block-start: .5em;
+}
+
+#operation_button_content
+{
+    padding: .5em 0 .25em;
 }
 
 button#start_train_btn
@@ -59,6 +66,7 @@ button#start_train_btn
 button#abort_train_btn
 {
     background: pink;
+    font-weight: bold;
 }
 
 /* Loading spinner (from https://projects.lukehaas.me/css-loaders/) */

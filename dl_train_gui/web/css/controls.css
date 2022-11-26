@@ -20,7 +20,7 @@
 {
     padding: 0 .5em;
     display: block;
-    overflow: hidden;
+    overflow: auto;
     background-color: #f1f1f1;
     transition: max-height .1s ease-out;
     border: #ccc 1px dashed;

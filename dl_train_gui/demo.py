@@ -10,7 +10,15 @@ class DemoProgram(Program):
         self.train_params['max_epoch'] = ['Max epoch', 100, 'int', 1, 9999999]
         self.train_params['lr'] = ['Learning rate', 0.01, 'float', 0.001, 1, 0.001]
         self.train_params['optimizer'] = ['Optimizer', 'Adam', 'choices', None, None, None, ['Adam', 'RMSProp', 'SGD']]
-        self.train_params['earlystopping'] = ['Early Stopping', True, 'bool']
+        self.train_params['lrdecay_section'] = ['Learning Rate Decay', None, 'title']        
+        self.train_params['lrdecay_enabled'] = ['Enabled', True, 'bool']
+        self.train_params['lrdecay_patience_improvement'] = ['Min improvement (loss)', 0.001, 'float', 0.001, 1, 0.001]
+        self.train_params['lrdecay_patience_epoch'] = ['Patience (epoch)', 20, 'int', 1, 500]
+        self.train_params['lrdecay_ratio'] = ['Decay Ratio', 0.5, 'float', 0.001, 0.999, 0.001]
+        self.train_params['es_section'] = ['Early Stopping', None, 'title']
+        self.train_params['es_enabled'] = ['Enabled', True, 'bool']
+        self.train_params['es_patience_improvement'] = ['Min improvement (loss)', 0.001, 'float', 0.001, 1, 0.001]
+        self.train_params['es_patience_epoch'] = ['Patience (epoch)', 20, 'int', 1, 500]
         super().init_train_params()
 
     def set_train_params(self, param_id, param_value):

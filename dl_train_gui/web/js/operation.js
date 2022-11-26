@@ -5,11 +5,19 @@ function RunInit()
 
 function StartTrain()
 {
-    SetTrainParamsEnabled(false);
-    eel.start_train();
+    let response = confirm("Start training operation?");
+    if (response)
+    {
+        SetTrainParamsEnabled(false);
+        eel.start_train();
+    }
 }
 
 function AbortTrain()
 {
-    eel.abort_train();
+    let response = confirm("Abort training operation?");
+    if (response)
+    {
+        eel.abort_train();
+    }
 }

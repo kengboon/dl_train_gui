@@ -2,6 +2,7 @@
 function UpdateControls()
 {
     UpdateCollapsible();
+    UpdateFormLabelSize();
     UpdateLayouts();
     HideSpinner();
 }
@@ -12,6 +13,7 @@ function UpdateCollapsible()
     var coll = document.getElementsByClassName("collapsible");
     for (var i = 0; i < coll.length; i++)
     {
+        coll[i].innerHTML = '&#x21D5; ' + coll[i].innerHTML;
         coll[i].addEventListener("click", function()
         {
             this.classList.toggle("active");
@@ -59,10 +61,17 @@ function UpdateFormLabelSize()
 // Call after initialized and window size changed
 function UpdateLayouts()
 {
-    UpdateFormLabelSize();
+    document.getElementById("train_param_content").style.maxHeight = window.innerHeight * .5;
 }
 
 // Create training parameter form inputs
+function CreateSectionTitle(id, caption)
+{
+    var sec = "<p class=\"train_param_title\" id=\"" + id + "\">" + caption + "</p><hr/>";
+    var form = document.getElementById("train_params");
+    form.innerHTML = form.innerHTML + sec;
+}
+
 function CreateTextInput(id, caption, value)
 {
     var input = "<p><label class=\"field-label\" for=\"" + id + "\">" + caption + "</label>";
@@ -124,4 +133,12 @@ function SetTrainParamsEnabled(isEnabled)
             inputs[j].disabled = !isEnabled;
         }
     }
+}
+
+function SetTrainOperationBtnState(isEnabled)
+{
+    let startBtn = document.getElementById("start_train_btn");
+    startBtn.disabled = !isEnabled;
+    let abortBtn = document.getElementById("abort_train_btn");
+    abortBtn.disabled = isEnabled;
 }

@@ -51,6 +51,8 @@ def init_params_callback(param_dict):
         param_info = param_dict[param_id]
         if len(param_info) < 3:
             eel.JsTrainParamCallback(param_id, param_info[0], param_info[1])
+        elif param_info[2] in ['section', 'title']:
+            eel.JsTrainParamCallback(param_id, param_info[0], param_info[1], param_info[2])
         elif param_info[2] in ['integer', 'int']:
             eel.JsTrainParamCallback(param_id, param_info[0], param_info[1], param_info[2], param_info[3], param_info[4], param_info[5] if len(param_info) > 5 else 1)
         elif param_info[2] in ['number', 'float', 'double']:

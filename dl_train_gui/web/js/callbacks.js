@@ -11,7 +11,7 @@ function JsStatusCallback(status, idle=true)
 {
     document.getElementById("curr_status").innerText = status;
     SetTrainParamsEnabled(idle);
-
+    SetTrainOperationBtnState(idle);
 }
 
 eel.expose(JsEpochCallback);
@@ -41,6 +41,11 @@ function JsTrainParamCallback(id, caption, value, type=null, min=0, max=1, step=
 {
     switch (type)
     {
+        case "section":
+        case "title":
+            CreateSectionTitle(id, caption);
+            break;
+
         case "int":
         case "integer":
         case "number":
