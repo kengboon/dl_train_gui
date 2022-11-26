@@ -2,7 +2,7 @@ import os, sys
 import eel
 from eel import chrome
 from dl_train_gui import config
-from dl_train_gui.util import create_default_program
+from dl_train_gui.util import *
 
 class UI:
     program = None
@@ -13,7 +13,7 @@ class UI:
 
     def start_ui(self):
         try:
-            size = (550, 650)
+            size = (600, 650)
             # Check Chrome installed
             chrome_instance_path = chrome.find_path()
             if chrome_instance_path is not None and os.path.exists(chrome_instance_path):
@@ -24,6 +24,14 @@ class UI:
                 print('Chrome is not installed.')
         except Exception as ex:
             print(ex)
+
+@eel.expose
+def get_build_info():
+    return 'ver ' + get_version()
+
+@eel.expose
+def get_company_info():
+    return get_company_logo()
 
 @eel.expose
 def init():
