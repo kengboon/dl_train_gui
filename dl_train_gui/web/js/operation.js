@@ -1,28 +1,15 @@
-function run_init()
+function RunInit()
 {
     eel.init();
 }
 
-function set_train_params_enable(isEnabled)
+function StartTrain()
 {
-    let params = document.forms["train_params"].getElementsByTagName("p");
-    for (let i = 0; i < params.length; i++)
-    {
-        let inputs = params[i].getElementsByTagName("input");
-        for (let j = 0; j < inputs.length; j++)
-        {
-            inputs[j].disabled = !isEnabled;
-        }
-    }
-}
-
-function start_train()
-{
-    set_train_params_enable(false);
+    SetTrainParamsEnabled(false);
     eel.start_train();
 }
 
-function abort_train()
+function AbortTrain()
 {
     eel.abort_train();
 }

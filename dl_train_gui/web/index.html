@@ -10,7 +10,7 @@
         <link rel="stylesheet" href="css/general.css"></link>
         <link rel="stylesheet" href="css/main.css"></link>
     </head>
-    <body onload="run_init()" onresize="UpdateLayouts()">
+    <body onload="RunInit()" onresize="UpdateLayouts()">
         <header>
             <div id="supportlinks">
                 <a href="https://github.com/kengboon/dl_train_gui" target="_blank"><span class="title">GitHub</span><img src="img/github.svg" /></a><br/>
@@ -23,8 +23,8 @@
             <div class="collapsible-content" id="train_param_content" style="display:block"><form id="train_params"></form></div>
         </section>
         <section id="operation_button_section">            
-            <button onclick="start_train()" id="start_train_btn">Start</button> 
-            <button onclick="abort_train()" id="abort_train_btn">Abort</button>            
+            <button onclick="StartTrain()" id="start_train_btn">Start</button> 
+            <button onclick="AbortTrain()" id="abort_train_btn">Abort</button>            
             <span id="curr_status" style="font-weight:bold">IDLE</span>
             <br/>
             Epoch <span id="curr_epoch">0</span> of <span id="max_epoch">0</span><span id="epoch_progress"></span>

@@ -16,10 +16,10 @@ class Program:
         self.vis_callback = callbacks[4]
         self.message_callback = callbacks[5]
 
-    def init_train_param(self):
+    def init_train_params(self):
         self.params_callback(self.train_params)
 
-    def set_train_param(self, param_id, param_value):
+    def set_train_params(self, param_id, param_value):
         if param_id in self.train_params:
             self.train_params[param_id][1] = param_value
 

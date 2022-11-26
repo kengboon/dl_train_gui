@@ -31,8 +31,8 @@ def init():
         UI.program = create_default_program()
     callbacks = [status_callback, init_params_callback, epoch_callback, epoch_end_callback, vis_callback, message_callback]
     UI.program.hook(callbacks)
-    UI.program.init_train_param()
-    eel.js_init_comp_callback();
+    UI.program.init_train_params()
+    eel.JsInitCompCallback();
 
 @eel.expose
 def start_train():
@@ -50,29 +50,29 @@ def init_params_callback(param_dict):
     for param_id in param_dict:
         param_info = param_dict[param_id]
         if len(param_info) < 3:
-            eel.js_train_param_callback(param_id, param_info[0], param_info[1])
+            eel.JsTrainParamCallback(param_id, param_info[0], param_info[1])
         elif param_info[2] in ['integer', 'int']:
-            eel.js_train_param_callback(param_id, param_info[0], param_info[1], param_info[2], param_info[3], param_info[4], param_info[5] if len(param_info) > 5 else 1)
+            eel.JsTrainParamCallback(param_id, param_info[0], param_info[1], param_info[2], param_info[3], param_info[4], param_info[5] if len(param_info) > 5 else 1)
         elif param_info[2] in ['number', 'float', 'double']:
-            eel.js_train_param_callback(param_id, param_info[0], param_info[1], param_info[2], param_info[3], param_info[4], param_info[5])
+            eel.JsTrainParamCallback(param_id, param_info[0], param_info[1], param_info[2], param_info[3], param_info[4], param_info[5])
         elif param_info[2] in ['enum', 'enums', 'options', 'choices']:
-            eel.js_train_param_callback(param_id, param_info[0], param_info[1], param_info[2], param_info[3], param_info[4], param_info[5], param_info[6])
+            eel.JsTrainParamCallback(param_id, param_info[0], param_info[1], param_info[2], param_info[3], param_info[4], param_info[5], param_info[6])
         elif param_info[2] in ['bool', 'boolean', 'checkbox']:
-            eel.js_train_param_callback(param_id, param_info[0], param_info[1], param_info[2])
+            eel.JsTrainParamCallback(param_id, param_info[0], param_info[1], param_info[2])
         else:
-            eel.js_train_param_callback(param_id, param_info[0], param_info[1])
+            eel.JsTrainParamCallback(param_id, param_info[0], param_info[1])
 
 def status_callback(status, idle=True):
-    eel.js_status_callback(status, idle)
+    eel.JsStatusCallback(status, idle)
 
-def epoch_callback(i, j, progress=''):
-    eel.js_epoch_callback(i, j, progress)
+def epoch_callback(cur_epoch, max_epoch, progress=''):
+    eel.JsEpochCallback(cur_epoch, max_epoch, progress)
 
 def epoch_end_callback(i, perf_info, is_checkpoint=False, checkpoint_info=''):
-    eel.js_epoch_end_callback(i, perf_info, is_checkpoint, checkpoint_info)
+    eel.JsEpochEndCallback(i, perf_info, is_checkpoint, checkpoint_info)
 
 def vis_callback():
-    eel.js_vis_callback()
+    eel.JsVisCallback()
 
 def message_callback(msg, type='info'):
-    eel.js_message_callback(msg, type)
+    eel.JsMessageCallback(msg, type)

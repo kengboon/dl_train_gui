@@ -1,3 +1,11 @@
+// Called once after initialized
+function UpdateControls()
+{
+    UpdateCollapsible();
+    UpdateLayouts();
+    HideSpinner();
+}
+
 // Reference: https://www.w3schools.com/howto/howto_js_collapsible.asp
 function UpdateCollapsible()
 {
@@ -20,18 +28,12 @@ function UpdateCollapsible()
     }
 }
 
-function UpdateControls()
-{
-    updateFormLabelSize();
-    UpdateLayouts();
-}
-
-function hideSpinner()
+function HideSpinner()
 {
     document.getElementById("spinner-root").style.display = "none";
 }
 
-function updateFormLabelSize()
+function UpdateFormLabelSize()
 {
     let max_width = 120;
     let params = document.forms["train_params"].getElementsByTagName("p");
@@ -48,20 +50,20 @@ function updateFormLabelSize()
             labels.push(_labels[j]);
         }
     }
-    console.log(labels);
     for (let i = 0; i < labels.length; i++)
     {
         labels[i].style.width = max_width;
     }
-
 }
 
+// Call after initialized and window size changed
 function UpdateLayouts()
 {
+    UpdateFormLabelSize();
 }
 
-
-function createTextInput(id, caption, value)
+// Create training parameter form inputs
+function CreateTextInput(id, caption, value)
 {
     var input = "<p><label class=\"field-label\" for=\"" + id + "\">" + caption + "</label>";
     input = input + "<input type=\"text\" name=\"" + id + "\" value=\"" + value + "\"></input></p>";
@@ -69,7 +71,7 @@ function createTextInput(id, caption, value)
     form.innerHTML = form.innerHTML + input;
 }
 
-function createNumberInput(id, caption, value, min, max, step)
+function CreateNumberInput(id, caption, value, min, max, step)
 {
     var input = "<p><label class=\"field-label\" for=\"" + id + "\">" + caption + "</label>";
     input = input + "<input type=\"number\" name=\"" + id + "\" value=\"" + value
@@ -78,7 +80,7 @@ function createNumberInput(id, caption, value, min, max, step)
     form.innerHTML = form.innerHTML + input;
 }
 
-function createCheckBoxInput(id, caption, value)
+function CreateCheckBoxInput(id, caption, value)
 {
     var input = "<p><label class=\"field-label\" for=\"" + id + "\">" + caption + "</label>";
     input = input + "<input type=\"checkbox\" name=\"" + id + "\"";
@@ -91,7 +93,7 @@ function createCheckBoxInput(id, caption, value)
     form.innerHTML = form.innerHTML + input;
 }
 
-function createRadioInput(id, caption, value, choices)
+function CreateRadioInput(id, caption, value, choices)
 {
     var input = "<p><label class=\"field-label\" for=\"" + id + "\">" + caption + "</label>";
     for (let i = 0; i < choices.length; i++)
@@ -108,4 +110,18 @@ function createRadioInput(id, caption, value, choices)
     input = input + "</p>";
     var form = document.getElementById("train_params");
     form.innerHTML = form.innerHTML + input;
+}
+
+// Control state helpers
+function SetTrainParamsEnabled(isEnabled)
+{
+    let params = document.forms["train_params"].getElementsByTagName("p");
+    for (let i = 0; i < params.length; i++)
+    {
+        let inputs = params[i].getElementsByTagName("input");
+        for (let j = 0; j < inputs.length; j++)
+        {
+            inputs[j].disabled = !isEnabled;
+        }
+    }
 }

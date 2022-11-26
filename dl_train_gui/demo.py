@@ -3,7 +3,7 @@ from dl_train_gui.common import Status
 from dl_train_gui.prog import Program
 
 class DemoProgram(Program):
-    def init_train_param(self):
+    def init_train_params(self):
         # Implement initialize training paramters here
         self.train_params['train_data'] = ['Train dataset', r'd:\data\train']
         self.train_params['val_data'] = ['Validation dataset', r'd:\data\val']
@@ -11,10 +11,10 @@ class DemoProgram(Program):
         self.train_params['lr'] = ['Learning rate', 0.01, 'float', 0.001, 1, 0.001]
         self.train_params['optimizer'] = ['Optimizer', 'Adam', 'choices', None, None, None, ['Adam', 'RMSProp', 'SGD']]
         self.train_params['earlystopping'] = ['Early Stopping', True, 'bool']
-        super().init_train_param()
+        super().init_train_params()
 
-    def set_train_param(self, param_id, param_value):
-        super().set_train_param(param_id, param_value)
+    def set_train_params(self, param_id, param_value):
+        super().set_train_params(param_id, param_value)
         # Implement setting training paramters here
 
     def train(self):

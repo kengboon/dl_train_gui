@@ -1,32 +1,30 @@
 // The functions can be called from Python via eel.function_name()
-eel.expose(js_init_comp_callback)
-function js_init_comp_callback()
+eel.expose(JsInitCompCallback)
+function JsInitCompCallback()
 {
-    UpdateCollapsible();
     UpdateControls();
-    hideSpinner();
 }
 
 
-eel.expose(js_status_callback);
-function js_status_callback(status, idle=true)
+eel.expose(JsStatusCallback);
+function JsStatusCallback(status, idle=true)
 {
     document.getElementById("curr_status").innerText = status;
-    set_train_params_enable(idle);
+    SetTrainParamsEnabled(idle);
 
 }
 
-eel.expose(js_epoch_callback);
-function js_epoch_callback(i, j, progress="")
+eel.expose(JsEpochCallback);
+function JsEpochCallback(curEpoch, maxEpoch, progress="")
 {
-    document.getElementById("curr_epoch").innerText = i;
-    if (j >= i)
+    document.getElementById("curr_epoch").innerText = curEpoch;
+    if (maxEpoch >= curEpoch)
     {
-        document.getElementById("max_epoch").innerText = j;
+        document.getElementById("max_epoch").innerText = maxEpoch;
     }
     else
     {
-        document.getElementById("max_epoch").innerText = i;
+        document.getElementById("max_epoch").innerText = curEpoch;
     }
     if (progress != "")
     {
@@ -38,8 +36,8 @@ function js_epoch_callback(i, j, progress="")
     }
 }
 
-eel.expose(js_train_param_callback)
-function js_train_param_callback(id, caption, value, type=null, min=0, max=1, step=1, choices=null)
+eel.expose(JsTrainParamCallback)
+function JsTrainParamCallback(id, caption, value, type=null, min=0, max=1, step=1, choices=null)
 {
     switch (type)
     {
@@ -48,41 +46,41 @@ function js_train_param_callback(id, caption, value, type=null, min=0, max=1, st
         case "number":
         case "float":
         case "double":
-            createNumberInput(id, caption, value, min, max, step);
+            CreateNumberInput(id, caption, value, min, max, step);
             break;
 
         case "checkbox":
         case "bool":
         case "boolean":
-            createCheckBoxInput(id, caption, value);
+            CreateCheckBoxInput(id, caption, value);
             break;
 
         case "choices":
         case "options":
         case "enum":
         case "enums":
-            createRadioInput(id, caption, value, choices)
+            CreateRadioInput(id, caption, value, choices)
             break;
 
         default:
-            createTextInput(id, caption, value);
+            CreateTextInput(id, caption, value);
             break;
     }
 }
 
-eel.expose(js_epoch_end_callback)
-function js_epoch_end_callback(epoch, perf_info, is_checkpoint=false, checkpoint_info="")
+eel.expose(JsEpochEndCallback)
+function JsEpochEndCallback(epoch, perf_info, isCheckpoint=false, checkpointInfo="")
 {
 }
 
-eel.expose(js_vis_callback)
-function js_vis_callback()
+eel.expose(JsVisCallback)
+function JsVisCallback()
 {
 
 }
 
-eel.expose(js_message_callback)
-function js_message_callback(msg, type="info")
+eel.expose(JsMessageCallback)
+function JsMessageCallback(msg, type="info")
 {
 
 }
