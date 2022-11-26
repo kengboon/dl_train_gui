@@ -28,7 +28,11 @@ And hooked to callbacks below:
 ## Build as distributable binary
 [PyInstaller](https://github.com/pyinstaller/pyinstaller) is included in [Eel](https://github.com/python-eel/Eel).
 
-A sample command can be found at [this batch file](https://github.com/kengboon/dl_train_gui/blob/dev/build.bat), include all required packages with ```--hidden-import``` if intended to build as single executable.
+Sample command can be found at [this batch file](https://github.com/kengboon/dl_train_gui/blob/dev/build.bat), include all required packages with ```--hidden-import``` if intended to build as single executable.
+
+```Bat
+python -m eel run.py "dl_train_gui" --onefile --noconsole --name "dl_train_gui" --icon "dl_train_gui/web/img/neural_net.ico" --hidden-import eel
+```
 
 Read the [documentation for PyInstaller](https://pyinstaller.org/en/stable/) for more options.
 
