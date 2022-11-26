@@ -6,8 +6,15 @@ Python ↔ HTML/JS GUI for deep learning training, built using [Eel](https://git
 ## Usage
 Inherit from or override the [```Program```](https://github.com/kengboon/dl_train_gui/blob/dev/dl_train_gui/prog.py) class (see [sample](https://github.com/kengboon/dl_train_gui/blob/dev/dl_train_gui/demo.py)).
 
+Create instance of program [here](https://github.com/kengboon/dl_train_gui/blob/dev/dl_train_gui/util.py).
+
+```Python
+def create_default_program():
+    return YOUR_PROGRAM_CLASS()
+```
+
 Following implementations required:
-- ```init_train_param``` - define a list of hyperparameters to be populated on UI form
+- ```init_train_params``` - define a list of hyperparameters to be populated on UI form
 - ```set_train_params``` - set the values of hyperparameters from UI form into training code
 - ```train``` - the entry point of training code
 
@@ -27,6 +34,22 @@ Read the [documentation for PyInstaller](https://pyinstaller.org/en/stable/) for
 
 ## Attributes
 Favicon comes from [artificial intelligence icon pack](https://www.flaticon.com/packs/artificial-intelligence-261) by Freepik.
+
+## Citation
+If you use the software in your research project, please use the following citation ([view metadata](https://github.com/kengboon/dl_train_gui/blob/dev/CITATION.cff)).
+### BibTex
+```BibTex
+@software{kengboon_dl_train_gui,
+    author = {Teo, Keng Boon},
+    license = {Apache-2.0},
+    title = {{dl_train_gui}: Deep Learning Training GUI},
+    url = {https://github.com/kengboon/dl_train_gui}
+}
+```
+### APA
+```APA
+Teo, K. B. Deep Learning Training GUI (dl_train_gui) [Computer software]. https://github.com/kengboon/dl_train_gui
+```
 
 ## If this is helpful, buy me a ☕
 <a href="https://ko-fi.com/woolf42" target="_blank"><img src="https://user-images.githubusercontent.com/5046671/197377067-ce6016ae-6368-47b6-a4eb-903eb7b0af9c.png" width="200" alt="Support me on Ko-fi"/></a>
