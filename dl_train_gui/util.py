@@ -9,14 +9,14 @@ def create_default_program():
     return DemoProgram()
 
 class Mode(Enum):
-    NONE = "none"
-    ORIGINAL = "original"
-    SCALE_BY_HEIGHT = "height"
-    SCALE_BY_WIDTH = "width"
-    RESIZE = "resize"
+    NONE = 'none'
+    ORIGINAL = 'original'
+    SCALE_BY_HEIGHT = 'height'
+    SCALE_BY_WIDTH = 'width'
+    RESIZE = 'resize'
 
 def get_company_logo():
-    name = "Company Name"
+    name = 'Company Name'
     path = 'company_logo.png'
     display_mode = Mode.NONE.value
     height = 24
