@@ -37,9 +37,9 @@ def get_company_info():
 def init():
     if UI.program is None:
         UI.program = create_default_program()
-    callbacks = [status_callback, init_params_callback, epoch_callback, epoch_end_callback, vis_callback, message_callback]
-    UI.program.hook(callbacks)
-    UI.program.init_train_params()
+        callbacks = [status_callback, init_params_callback, epoch_callback, epoch_end_callback, vis_callback, message_callback]
+        UI.program.hook(callbacks)
+        UI.program.init_train_params()
     eel.JsInitCompCallback();
 
 @eel.expose
