@@ -19,9 +19,10 @@ class Program:
     def init_train_params(self):
         self.params_callback(self.train_params)
 
-    def set_train_params(self, param_id, param_value):
-        if param_id in self.train_params:
-            self.train_params[param_id][1] = param_value
+    def set_train_params(self, param_dict):
+        for param_id in param_dict:
+            if param_id in self.train_params:
+                self.train_params[param_id][1] = param_dict[param_id]
 
     def set_status(self, status):
         self.status = status

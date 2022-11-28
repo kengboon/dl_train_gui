@@ -21,8 +21,8 @@ class DemoProgram(Program):
         self.train_params['es_patience_epoch'] = ['Patience (epoch)', 20, 'int', 1, 500]
         super().init_train_params()
 
-    def set_train_params(self, param_id, param_value):
-        super().set_train_params(param_id, param_value)
+    def set_train_params(self, param_dict):
+        super().set_train_params(param_dict)
         # Implement setting training paramters here
 
     def train(self):

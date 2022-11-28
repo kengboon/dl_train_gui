@@ -51,8 +51,8 @@ def abort_train():
     UI.program.abort_train()
 
 @eel.expose
-def set_train_param(param_name, param_value):
-    UI.program.set_train_param(param_name, param_value)
+def set_train_params(param_dict):
+    UI.program.set_train_params(param_dict)
 
 def init_params_callback(param_dict):
     for param_id in param_dict:

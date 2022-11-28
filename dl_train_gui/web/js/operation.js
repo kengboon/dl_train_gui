@@ -55,6 +55,7 @@ function StartTrain()
     if (response)
     {
         SetTrainParamsEnabled(false);
+        UpdateTrainParams();
         eel.start_train();
     }
 }
@@ -66,4 +67,54 @@ function AbortTrain()
     {
         eel.abort_train();
     }
+}
+
+function UpdateTrainParams()
+{
+    let paramDict = new Object();
+    let params = document.forms["train_params"].getElementsByTagName("p");
+    for (let i = 0; i < params.length; i++)
+    {
+        let param = params[i];
+        let label = param.getElementsByClassName("field-label");
+        if (label.length > 0)
+        {
+            label = label[0];
+            let paramKey = label.htmlFor;
+            let paramValue = null;
+
+            let inputs = param.getElementsByTagName("input");
+            if (inputs.length > 0)
+            {
+                let input = inputs[0];
+                switch (input.type)
+                {
+                    case "text":
+                        paramValue = input.value;
+                        break;
+
+                    case "number":
+                        paramValue = +input.value;
+                        break;
+
+                    case "checkbox":
+                        paramValue = input.checked;
+                        break;
+
+                    case "radio":
+                        for (let j = 0; j < inputs.length; j++)
+                        {
+                            if (inputs[j].checked)
+                            {
+                                paramValue = inputs[j].value;
+                                break;
+                            }
+                        }
+                        break;
+                }
+                paramDict[paramKey] = paramValue;
+            }
+        }
+    }
+    eel.set_train_params(paramDict)();
 }
