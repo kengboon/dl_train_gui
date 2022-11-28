@@ -8,14 +8,13 @@ setup(
     url='https://github.com/kengboon/dl_train_gui',
     license='Apache 2.0',
     author='KB Teo',
-    author_email='kb_teo@mmsis.com',
-    description='Python GUI for machine learning & deep learning training.',
+    description='Python <-> HTML/JS GUI for deep learning training.',
     long_description=''.join(open('README.md', encoding='utf-8').readlines()),
     long_description_content_type='text/markdown',
     keywords=['gui', 'executable'],
     packages=['dl_train_gui'],
     include_package_data=True,
-    install_requires=['eel==0.14.0', 'matplotlib', 'opencv-python'],
+    install_requires=['eel==0.14.0'],
     python_requires='>=3.6',
     entry_points={
         'console_scripts': [
