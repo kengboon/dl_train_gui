@@ -96,7 +96,10 @@ function BrowserFolder(paramID)
                 promise.then(
                     (folderPath) =>
                     {
-                        inputs[j].value = folderPath;
+                        if (folderPath != null && folderPath != "")
+                        {
+                            inputs[j].value = folderPath;
+                        }
                     }
                 );
                 return;
