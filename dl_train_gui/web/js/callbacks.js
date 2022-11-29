@@ -67,6 +67,12 @@ function JsTrainParamCallback(id, caption, value, type=null, min=0, max=1, step=
             CreateRadioInput(id, caption, value, choices)
             break;
 
+        case "folder":
+        case "dir":
+        case "directory":
+            CreateDirectoryPathInput(id, caption, value);
+            break;
+
         default:
             CreateTextInput(id, caption, value);
             break;

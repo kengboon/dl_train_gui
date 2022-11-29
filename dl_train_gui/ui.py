@@ -1,7 +1,7 @@
 import os, sys
 import eel
 from eel import chrome
-from dl_train_gui import config
+from dl_train_gui import config, dialogs
 from dl_train_gui.util import *
 
 class UI:
@@ -34,6 +34,26 @@ def get_company_info():
     return get_company_logo()
 
 @eel.expose
+def ask_file():
+    return dialogs.ask_file()
+
+@eel.expose
+def ask_files():
+    return dialogs.ask_files()
+
+@eel.expose
+def ask_folder():
+    return dialogs.ask_folder()
+
+@eel.expose
+def does_file_exist(file_path):
+    return os.path.isfile(file_path)
+
+@eel.expose
+def does_folder_exist(path):
+    return os.path.isdir(path)
+
+@eel.expose
 def init():
     if UI.program is None:
         UI.program = create_default_program()
@@ -59,18 +79,14 @@ def init_params_callback(param_dict):
         param_info = param_dict[param_id]
         if len(param_info) < 3:
             eel.JsTrainParamCallback(param_id, param_info[0], param_info[1])
-        elif param_info[2] in ['section', 'title']:
-            eel.JsTrainParamCallback(param_id, param_info[0], param_info[1], param_info[2])
         elif param_info[2] in ['integer', 'int']:
             eel.JsTrainParamCallback(param_id, param_info[0], param_info[1], param_info[2], param_info[3], param_info[4], param_info[5] if len(param_info) > 5 else 1)
         elif param_info[2] in ['number', 'float', 'double']:
             eel.JsTrainParamCallback(param_id, param_info[0], param_info[1], param_info[2], param_info[3], param_info[4], param_info[5])
         elif param_info[2] in ['enum', 'enums', 'options', 'choices']:
             eel.JsTrainParamCallback(param_id, param_info[0], param_info[1], param_info[2], param_info[3], param_info[4], param_info[5], param_info[6])
-        elif param_info[2] in ['bool', 'boolean', 'checkbox']:
-            eel.JsTrainParamCallback(param_id, param_info[0], param_info[1], param_info[2])
         else:
-            eel.JsTrainParamCallback(param_id, param_info[0], param_info[1])
+            eel.JsTrainParamCallback(param_id, param_info[0], param_info[1], param_info[2])
 
 def status_callback(status, idle=True):
     eel.JsStatusCallback(status, idle)

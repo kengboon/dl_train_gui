@@ -72,6 +72,39 @@ function CreateSectionTitle(id, caption)
     form.innerHTML = form.innerHTML + sec;
 }
 
+function CreateDirectoryPathInput(id, caption, value)
+{
+    var input = "<p><label class=\"field-label\" for=\"" + id + "\">" + caption + "</label>";
+    input = input + "<input type=\"text\" name=\"" + id + "\" value=\"" + value + "\"></input>";
+    input = input + "<button onclick=\"BrowserFolder(\'" + id + "\')\" type=\"button\" class=\"browse_dir\">Browse</button></p>";
+    var form = document.getElementById("train_params");
+    form.innerHTML = form.innerHTML + input;
+}
+
+function BrowserFolder(paramID)
+{
+    let params = document.forms["train_params"].getElementsByTagName("p");
+    for (let i = 0; i < params.length; i++)
+    {
+        let inputs = params[i].getElementsByTagName("input");
+        for (let j = 0; j < inputs.length; j++)
+        {
+            console.log(inputs[j]);
+            if (inputs[j].type == "text" && inputs[j].name == paramID)
+            {
+                let promise = eel.ask_folder()();
+                promise.then(
+                    (folderPath) =>
+                    {
+                        inputs[j].value = folderPath;
+                    }
+                );
+                return;
+            }
+        }
+    }
+}
+
 function CreateTextInput(id, caption, value)
 {
     var input = "<p><label class=\"field-label\" for=\"" + id + "\">" + caption + "</label>";
