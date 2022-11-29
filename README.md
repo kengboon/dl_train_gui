@@ -30,8 +30,13 @@ And hooked to callbacks below:
 
 Sample command can be found at [this batch file](https://github.com/kengboon/dl_train_gui/blob/dev/build.bat), include all required packages with ```--hidden-import``` if intended to build as single executable.
 
+*Required: eel, tkinter, tkinter.filedialog*
+
 ```Bat
-python -m eel run.py "dl_train_gui" --onefile --noconsole --name "dl_train_gui" --icon "dl_train_gui/web/img/neural_net.ico" --hidden-import eel
+python -m eel run.py "dl_train_gui" --onefile --noconsole --name "dl_train_gui" --icon "dl_train_gui/web/img/neural_net.ico"^
+ --hidden-import eel^
+ --hidden-import tkinter^
+ --hidden-import tkinter.filedialog
 ```
 
 Read the [documentation for PyInstaller](https://pyinstaller.org/en/stable/) for more options.
