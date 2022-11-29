@@ -46,8 +46,8 @@ Favicon comes from [artificial intelligence icon pack](https://www.flaticon.com/
 
 ## Citation
 If you use the software in your research project, please use the following citation ([view metadata](https://github.com/kengboon/dl_train_gui/blob/dev/CITATION.cff)).
-### BibTex
-```BibTex
+### BibTeX
+```BibTeX
 @software{kengboon_dl_train_gui,
     author = {Teo, Keng Boon},
     license = {Apache-2.0},
