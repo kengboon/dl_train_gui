@@ -3,6 +3,11 @@ Python ↔ HTML/JS GUI for deep learning training, built using [Eel](https://git
 
 **dl_train_gui** acts as a container to the training code (no constraint on the deep learning framework), and provide a generic GUI for deep learning training task.
 
+Chart(s) are created using [billboard.js](https://github.com/naver/billboard.js).
+
+## Screenshot
+<img src="https://user-images.githubusercontent.com/5046671/204745617-3f858b9f-f1d1-45ba-aae6-372a3c7cb340.png" style="height:400px;border:1px solid #000"/> <img src="https://user-images.githubusercontent.com/5046671/204746449-78ff201f-6c2b-46e7-a6e9-da9754dbcd45.png" style="height:400px;border:1px solid #000"/>
+
 ## Usage
 Inherit from or override the [```Program```](https://github.com/kengboon/dl_train_gui/blob/dev/dl_train_gui/prog.py) class (see [sample](https://github.com/kengboon/dl_train_gui/blob/dev/dl_train_gui/demo.py)).
 
