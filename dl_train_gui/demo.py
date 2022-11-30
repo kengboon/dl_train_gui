@@ -33,6 +33,10 @@ class DemoProgram(Program):
         self.set_status(Status.TRAINING)
         # Implement training code here
         start_t = timeit.default_timer()
+        loss = 1
+        val_loss = 1
+        acc = 0.2
+        val_acc = 0.2
         for i in range(self.get_train_param('max_epoch')):
             if self.do_abort():
                 return
@@ -55,8 +59,34 @@ class DemoProgram(Program):
                 start_t = timeit.default_timer()
                 eel.sleep(.1)
             is_checkpoint = i % 5 == 4
-            self.epoch_end_callback(i+1, {'loss': self.generate_random(), 'accuracy': self.generate_random(), 'val_loss': self.generate_random(), 'val_accuracy': self.generate_random()}, is_checkpoint, 'Model saved' if is_checkpoint else '')
+            loss = self.random_downtrend(loss)
+            acc = self.random_uptrend(acc)
+            val_loss = self.random_downtrend(val_loss)
+            val_acc = self.random_uptrend(val_acc)
+            self.epoch_end_callback(i+1, {\
+                'loss': loss,\
+                'accuracy': acc,\
+                'val_loss': val_loss,\
+                'val_accuracy': val_acc\
+            }, is_checkpoint, 'Model saved' if is_checkpoint else '')
         self.set_status(Status.END)
 
-    def generate_random(self):
-        return round(random.random(), 3)
+    def random_downtrend(self, prev, min=0):
+        if prev <= min * 1.05:
+            return round(prev, 3)
+        while True:
+            ratio = random.random() + 0.01
+            if ratio > 0.7:
+                return round(prev * ratio, 3)
+            elif ratio < 0.1:
+                return round(prev * (1 + ratio), 3)
+
+    def random_uptrend(self, prev, max=1):
+        if prev >= max *.95:
+            return round(prev, 3)
+        while True:
+            ratio = random.random() + 0.01
+            if ratio < 0.3:
+                return round(prev * (1 + ratio), 3)
+            elif ratio > 0.9:
+                return round(prev * ratio, 3)

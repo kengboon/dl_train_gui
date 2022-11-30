@@ -39,7 +39,7 @@
         </section>
         <section id="operation_button_section">
             <button type="button" class="collapsible title">Run Training</button>
-            <div class="collapsible-content">
+            <div class="collapsible-content" style="display:block">
                 <div id="operation_button_content">
                     <button onclick="StartTrain()" id="start_train_btn">Start</button> 
                     <button onclick="AbortTrain()" id="abort_train_btn" disabled>Abort</button>            
@@ -51,7 +51,7 @@
         </section>
         <section id="history_section">
             <button type="button" class="collapsible title">Histories</button>
-            <div class="collapsible-content" id="history_content">
+            <div class="collapsible-content" id="history_content"style="display:block">
                 <div id="history_content_btn">
                     <button onclick="ExportHistories()">Export to CSV</button>
                 </div>
