@@ -13,7 +13,17 @@ function UpdateCollapsible()
     var coll = document.getElementsByClassName("collapsible");
     for (var i = 0; i < coll.length; i++)
     {
-        coll[i].innerHTML = '&#x21D5; ' + coll[i].innerHTML;
+        var content = coll[i].nextElementSibling;
+        if (content.style.display == "block")
+        {
+            coll[i].innerHTML = "&#9662; " + coll[i].innerHTML;
+
+        }
+        else
+        {
+            coll[i].innerHTML = "&#9657; " + coll[i].innerHTML;
+        }
+
         coll[i].addEventListener("click", function()
         {
             this.classList.toggle("active");
@@ -21,10 +31,12 @@ function UpdateCollapsible()
             if (content.style.display == "block")
             {
                 content.style.display = "none";
+                this.innerHTML = "&#9657; " + this.innerHTML.substring(2);
             }
             else
             {
                 content.style.display = "block";
+                this.innerHTML = "&#9662; " + this.innerHTML.substring(2);
             }
         });
     }
