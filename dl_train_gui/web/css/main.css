@@ -62,7 +62,7 @@ label.field-label
     margin-block-start: .5em;
 }
 
-#operation_button_content
+#operation_button_content, #history_content_btn
 {
     padding: .5em 0 .25em;
 }
@@ -77,6 +77,11 @@ button#abort_train_btn
 {
     background: pink;
     font-weight: bold;
+}
+
+#history_content_table
+{
+    margin: .25em 0 .5em;
 }
 
 /* Loading spinner (from https://projects.lukehaas.me/css-loaders/) */

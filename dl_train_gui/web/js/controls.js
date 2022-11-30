@@ -74,6 +74,8 @@ function UpdateFormLabelSize()
 function UpdateLayouts()
 {
     document.getElementById("train_param_content").style.maxHeight = window.innerHeight * .5;
+    document.getElementById("history_content_table").style.height = window.innerHeight * .3;
+    document.getElementById("history_content_table").style.overflow = "auto";
 }
 
 // Create training parameter form inputs
@@ -167,6 +169,78 @@ function CreateRadioInput(id, caption, value, choices)
     input = input + "</p>";
     var form = document.getElementById("train_params");
     form.innerHTML = form.innerHTML + input;
+}
+
+function CreateTableHeader(perfInfo)
+{
+    let header = document.getElementById("history_header");
+    if (header == null)
+    {
+        var table = document.getElementById("history_table");
+        header = table.createTHead();
+        header.id = "history_header";
+    }
+    if (header.rows.length == 0)
+    {
+        var row = header.insertRow();
+        CreateTableCell(row, "Epoch");
+        for (let key of Object.keys(perfInfo))
+        {
+            CreateTableCell(row, key);
+        }
+        CreateTableCell(row, "Checkpoint");
+        CreateTableCell(row, "Note");
+    }
+}
+
+function ClearTableRow()
+{
+    var table = document.getElementById("history_table");
+    while (table.rows.length > 0)
+    {
+        table.deleteRow(0);
+    }
+}
+
+function CreateTableRow(epoch, perfInfo, isCheckpoint, checkpointInfo)
+{
+    CreateTableHeader(perfInfo);
+    var table = document.getElementById("history_table");
+    var tableBody = table.getElementsByTagName("tbody");
+    if (tableBody.length == 0)
+    {
+        tableBody = table.createTBody();
+    }
+    else
+    {
+        tableBody = tableBody[0];
+    }
+    var row = tableBody.insertRow();
+    CreateTableCell(row, epoch);
+    for (let key of Object.keys(perfInfo))
+    {
+        CreateTableCell(row, perfInfo[key]);
+    }
+
+    if (isCheckpoint)
+    {
+        let cell = CreateTableCell(row, "&#9873;");
+        cell.style.color = "red";
+        row.style.fontWeight = "bold";
+    }
+    else
+    {
+        CreateTableCell(row, "");
+    }
+    CreateTableCell(row, checkpointInfo);
+    row.scrollIntoView();
+}
+
+function CreateTableCell(row, content, index=null)
+{
+    let cell = row.insertCell();
+    cell.innerHTML = content;
+    return cell;
 }
 
 // Control state helpers

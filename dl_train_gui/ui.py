@@ -94,7 +94,7 @@ def status_callback(status, idle=True):
 def epoch_callback(cur_epoch, max_epoch, progress=''):
     eel.JsEpochCallback(cur_epoch, max_epoch, progress)
 
-def epoch_end_callback(i, perf_info, is_checkpoint=False, checkpoint_info=''):
+def epoch_end_callback(i, perf_info, is_checkpoint=None, checkpoint_info=''):
     eel.JsEpochEndCallback(i, perf_info, is_checkpoint, checkpoint_info)
 
 def vis_callback():

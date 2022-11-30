@@ -6,7 +6,7 @@ body
 
 a, a:visited
 {
-    color: #0074CC;
+    color: dodgerblue;
 }
 
 a:hover
@@ -29,4 +29,29 @@ hr
 form p
 {
     display: flex;
+}
+
+table
+{
+    font-size: inherit;
+    padding:.25 0;
+}
+
+thead
+{
+    position: sticky;
+    top: 0;
+}
+
+thead td
+{
+    font-weight:bold;
+    background: dodgerblue;
+    color: white;
+}
+
+td
+{
+    border: 1px solid dodgerblue;
+    padding: 0 .25em;
 }

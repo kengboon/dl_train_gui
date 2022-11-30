@@ -80,8 +80,9 @@ function JsTrainParamCallback(id, caption, value, type=null, min=0, max=1, step=
 }
 
 eel.expose(JsEpochEndCallback)
-function JsEpochEndCallback(epoch, perf_info, isCheckpoint=false, checkpointInfo="")
+function JsEpochEndCallback(epoch, perfInfo, isCheckpoint=null, checkpointInfo="")
 {
+    CreateTableRow(epoch, perfInfo, isCheckpoint, checkpointInfo);
 }
 
 eel.expose(JsVisCallback)

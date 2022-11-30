@@ -51,8 +51,22 @@
         </section>
         <section id="history_section">
             <button type="button" class="collapsible title">Histories</button>
-            <div class="collapsible-content" id="history_content" style="display: none;">
+            <div class="collapsible-content" id="history_content">
+                <div id="history_content_btn">
+                    <button onclick="ExportHistories()">Export to CSV</button>
+                </div>
+                <div id="history_content_table">
+                    <table id="history_table"></table>
+                </div>
             </div>
+        </section>
+        <section id="vis-section">
+            <button type="button" class="collapsible title">Visualization</button>
+            <div class="collapsible-content" style="display: none;"></div>
+        </section>
+        <section id="messagelog-section">
+            <button type="button" class="collapsible title">Message Log</button>
+            <div class="collapsible-content" style="display: none;"></div>
         </section>
     </body>
 </html>
