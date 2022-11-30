@@ -14,14 +14,14 @@ function UpdateCollapsible()
     for (var i = 0; i < coll.length; i++)
     {
         var content = coll[i].nextElementSibling;
-        if (content.style.display == "block")
+        if (content.style.display == "none")
         {
-            coll[i].innerHTML = "&#9662; " + coll[i].innerHTML;
+            coll[i].innerHTML = "&#9657; " + coll[i].innerHTML;
 
         }
         else
         {
-            coll[i].innerHTML = "&#9657; " + coll[i].innerHTML;
+            coll[i].innerHTML = "&#9662; " + coll[i].innerHTML;
         }
 
         coll[i].addEventListener("click", function()
@@ -76,6 +76,7 @@ function UpdateLayouts()
     document.getElementById("train_param_content").style.maxHeight = window.innerHeight * .5;
     document.getElementById("history_content_table").style.height = window.innerHeight * .3;
     document.getElementById("history_content_table").style.overflow = "auto";
+    document.getElementById("line-chart").style.height = window.innerHeight * .35;
 }
 
 // Create training parameter form inputs
@@ -233,7 +234,9 @@ function CreateTableRow(epoch, perfInfo, isCheckpoint, checkpointInfo)
         CreateTableCell(row, "");
     }
     CreateTableCell(row, checkpointInfo);
-    row.scrollIntoView();
+
+    let container = document.getElementById("history_content_table");
+    container.scrollTop = container.scrollHeight;
 }
 
 function CreateTableCell(row, content, index=null)

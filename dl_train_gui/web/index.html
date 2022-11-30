@@ -37,9 +37,9 @@
             <button type="button" class="collapsible title" id="train_param_header">Training Parameters</button>
             <div class="collapsible-content" id="train_param_content" style="display:block"><form id="train_params"></form></div>
         </section>
-        <section id="operation_button_section">            
+        <section id="operation_button_section">
             <button type="button" class="collapsible title">Run Training</button>
-            <div class="collapsible-content" style="display:block">
+            <div class="collapsible-content">
                 <div id="operation_button_content">
                     <button onclick="StartTrain()" id="start_train_btn">Start</button> 
                     <button onclick="AbortTrain()" id="abort_train_btn" disabled>Abort</button>            
@@ -62,7 +62,9 @@
         </section>
         <section id="vis-section">
             <button type="button" class="collapsible title">Visualization</button>
-            <div class="collapsible-content" style="display: none;"></div>
+            <div class="collapsible-content" id="vis_content" style="display: none;">
+                <div id="line-chart"></div>
+            </div>
         </section>
         <section id="messagelog-section">
             <button type="button" class="collapsible title">Message Log</button>

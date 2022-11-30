@@ -1,4 +1,4 @@
-import timeit
+import random, timeit
 import eel
 from dl_train_gui.common import Status
 from dl_train_gui.prog import Program
@@ -55,5 +55,8 @@ class DemoProgram(Program):
                 start_t = timeit.default_timer()
                 eel.sleep(.1)
             is_checkpoint = i % 5 == 4
-            self.epoch_end_callback(i+1, {'loss': 1.5, 'accuracy': 0, 'val_loss': 1.5, 'val_accuracy': 0}, is_checkpoint, 'Model saved' if is_checkpoint else '')
+            self.epoch_end_callback(i+1, {'loss': self.generate_random(), 'accuracy': self.generate_random(), 'val_loss': self.generate_random(), 'val_accuracy': self.generate_random()}, is_checkpoint, 'Model saved' if is_checkpoint else '')
         self.set_status(Status.END)
+
+    def generate_random(self):
+        return round(random.random(), 3)

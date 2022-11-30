@@ -119,3 +119,68 @@ function UpdateTrainParams()
     }
     eel.set_train_params(paramDict)();
 }
+
+function ExportHistories()
+{
+    let csvData = [];
+    let table = document.getElementById("history_table");
+    let header = document.getElementById("history_header");
+    if (header == null)
+    {
+        return;
+    }
+    for (let i = 0; i < header.rows.length; i++)
+    {
+        let cols = header.rows[i].cells;
+        let csvRow = [];
+        for (let j = 0; j < cols.length; j++)
+        {
+            csvRow.push(cols[j].innerHTML);
+        }
+        csvData.push(csvRow.join(","));
+    }
+
+    if (table.tBodies.length == 0)
+    {
+        return;
+    }
+
+    let rows = table.tBodies[0].rows;
+    for (let i = 0; i < rows.length; i++)
+    {
+        let cols = rows[i].cells;
+        let csvRow = [];
+        for (let j = 0; j < cols.length; j++)
+        {
+            if (j == cols.length - 2)
+            {
+                csvRow.push(cols[j].innerHTML != "" ? "true" : "false");
+            }
+            else if (j == cols.length - 1)
+            {
+                csvRow.push("\"" + cols[j].innerHTML + "\"");
+            }
+            else
+            {
+                csvRow.push(cols[j].innerHTML);
+            }
+        }
+        csvData.push(csvRow.join(","));
+    }
+    csvData = csvData.join("\n");
+
+    let csvFile = new Blob([csvData], { type:"text/csv" });
+    GenerateDownloadLink(csvFile, "histories.csv");
+}
+
+function GenerateDownloadLink(obj, fileName)
+{
+    let url = window.URL.createObjectURL(obj);
+    let tempLink = document.createElement("a");
+    tempLink.href = url;
+    tempLink.download = fileName;
+    tempLink.style.display = "none";
+    document.body.appendChild(tempLink);
+    tempLink.click();
+    document.body.removeChild(tempLink);
+}

@@ -83,6 +83,7 @@ eel.expose(JsEpochEndCallback)
 function JsEpochEndCallback(epoch, perfInfo, isCheckpoint=null, checkpointInfo="")
 {
     CreateTableRow(epoch, perfInfo, isCheckpoint, checkpointInfo);
+    UpdateLineChart(epoch, perfInfo);
 }
 
 eel.expose(JsVisCallback)
