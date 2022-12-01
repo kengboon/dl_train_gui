@@ -85,6 +85,14 @@ class DemoProgram(Program):
                 'accuracy': acc,\
                 'val_accuracy': val_acc\
             }, 'line')
+            # Send message to UI
+            rdm = random.randint(0, 200)
+            if rdm % 8 == 0:
+                self.message_callback('Some info message.')
+            elif rdm % 10 == 0:
+                self.message_callback('Some warning message.', type='warn')
+            elif rdm % 13 == 0:
+                self.message_callback('Some error message.', type='error')
         self.set_status(Status.END)
 
     def random_downtrend(self, prev, min=0):

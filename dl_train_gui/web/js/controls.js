@@ -56,6 +56,21 @@ function UpdateCollapsible()
     }
 }
 
+function CreateResizeObserver()
+{
+    /*
+    if (window.ResizeObserver)
+    {
+        let observer = new ResizeObserver(entries =>
+        {
+            let grid = document.getElementById("line-charts-grid");
+        });
+        let elem = document.getElementById("vis_content");
+        observer.observe(elem);
+    }
+    */
+}
+
 function HideSpinner()
 {
     document.getElementById("spinner-root").style.display = "none";
@@ -91,6 +106,7 @@ function UpdateLayouts()
     document.getElementById("history_content_table").style.height = window.innerHeight * .3;
     document.getElementById("history_content_table").style.overflow = "auto";
     document.getElementById("line-charts-grid").style.height = window.innerHeight * .4;
+    document.getElementById("messagelog-box").style.height = window.innerHeight * .2;
 }
 
 // Create training parameter form inputs
@@ -288,7 +304,8 @@ function SetTrainOperationBtnState(isEnabled)
 function ResetHistoryDisplay()
 {
     ClearTableRow();
-    ClearLineCharts();
+    ClearLineCharts();    
+    CreateResizeObserver();
     ExpandHistorySection();
     eel.init_vis();
 }

@@ -184,3 +184,17 @@ function GenerateDownloadLink(obj, fileName)
     tempLink.click();
     document.body.removeChild(tempLink);
 }
+
+function SaveMessageLog()
+{
+    let messageLogBox = document.getElementById("messagelog-box");
+    let fullLog = messageLogBox.innerText;
+    let logFile = new Blob([fullLog], {type: "text/txt"});
+    GenerateDownloadLink(logFile, "logfile.txt");
+}
+
+function ClearMessageLog()
+{
+    let messageLogBox = document.getElementById("messagelog-box");
+    messageLogBox.innerHTML = "";
+}

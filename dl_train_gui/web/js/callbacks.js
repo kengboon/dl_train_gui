@@ -110,5 +110,45 @@ function JsVisCallback(visID, rows, columns, type="line")
 eel.expose(JsMessageCallback)
 function JsMessageCallback(msg, type="info")
 {
+    function padWithZero(num, targetLen=2)
+    {
+        return String(num).padStart(targetLen, "0");
+    }
 
+    let date = new Date();
+    let newLine = "<span style=\"color:";
+    switch (type)
+    {
+        case "info":
+        case "information":
+            newLine = newLine + "blue";
+            break;
+
+        case "error":
+        case "err":
+            newLine = newLine + "red";
+            break;
+
+        case "warning":
+        case "warn":
+            newLine = newLine + "orange";
+            break;
+
+        default:
+            newLine = newLine + "inherit";
+            break;
+    }
+    newLine = newLine + "\">";
+    newLine = newLine + date.getFullYear() + "-" + padWithZero(date.getMonth()) + "-" + padWithZero(date.getDate()) + " ";
+    newLine = newLine + padWithZero(date.getHours()) + ":" + padWithZero(date.getMinutes()) + ":" + padWithZero(date.getSeconds()) + "." + padWithZero(date.getMilliseconds(), 3) + " ";
+    newLine = newLine + "[" + type.toUpperCase() + "] ";
+    newLine = newLine + msg + "</span>";
+
+    let messageLogBox = document.getElementById("messagelog-box");
+    messageLogBox.innerHTML = messageLogBox.innerHTML == "" ? newLine : messageLogBox.innerHTML + "<br\/>" + newLine;
+
+    if (document.getElementById("messagelog-autoscroll").checked)
+    {
+        messageLogBox.scrollTop = messageLogBox.scrollHeight;
+    }
 }

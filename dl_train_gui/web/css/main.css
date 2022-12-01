@@ -62,7 +62,7 @@ label.field-label
     margin-block-start: .5em;
 }
 
-#operation_button_content, #history_content_btn
+#operation_button_content, #history_content_btn, #messagelog-content-btn
 {
     padding: .5em 0 .25em;
 }
@@ -89,6 +89,15 @@ button#abort_train_btn
     display: grid;
     gap: 0;
     grid-template-columns: 100%;
+}
+
+#messagelog-box
+{
+    background: white;
+    font-size: .8em;
+    margin: .5em .25em;
+    padding: .25em .5em;
+    overflow: auto;
 }
 
 /* Loading spinner (from https://projects.lukehaas.me/css-loaders/) */

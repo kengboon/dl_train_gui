@@ -69,7 +69,14 @@
         </section>
         <section id="messagelog-section">
             <button type="button" class="collapsible title">Message Log</button>
-            <div class="collapsible-content" style="display: none;"></div>
+            <div class="collapsible-content" id="messagelog-content" style="display: none;">
+                <div id="messagelog-content-btn">
+                    <button onclick="SaveMessageLog()">Save</button>
+                    <button onclick="ClearMessageLog()">Clear</button>
+                    <input type="checkbox" id="messagelog-autoscroll" checked>Auto scroll</input>
+                </div>
+                <div id="messagelog-box" readonly></div>
+            </div>
         </section>
     </body>
 </html>
