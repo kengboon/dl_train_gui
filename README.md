@@ -27,7 +27,8 @@ And hooked to callbacks below:
 - ```status_callback``` - to update the training status such as running, error, cancelled, etc. to UI
 - ```epoch_callback``` - to update the epoch count and progress to UI
 - ```epoch_end_callback``` - to indicate end of epoch and record performance
-- ```vis_callback``` - to send visualization to UI (optional)
+- ```init_vis_callback``` - to initialize chart visualization area on UI *(optional)*
+- ```vis_callback``` - to update chart visualization on UI *(optional)*
 - ```message_callback``` - to send miscellaneous messages to UI
 
 ## Build as distributable binary
@@ -35,7 +36,7 @@ And hooked to callbacks below:
 
 Sample command can be found at [this batch file](https://github.com/kengboon/dl_train_gui/blob/dev/build.bat), include all required packages with ```--hidden-import``` if intended to build as single executable.
 
-*Required: eel, tkinter, tkinter.filedialog*
+Include required base packages: eel, tkinter, tkinter.filedialog
 
 ```Bat
 python -m eel run.py "dl_train_gui" --onefile --noconsole --name "dl_train_gui" --icon "dl_train_gui/web/img/neural_net.ico"^
