@@ -13,8 +13,9 @@ class Program:
         self.params_callback = callbacks[1]
         self.epoch_callback = callbacks[2]
         self.epoch_end_callback = callbacks[3]
-        self.vis_callback = callbacks[4]
-        self.message_callback = callbacks[5]
+        self.init_vis_callback = callbacks[4]
+        self.vis_callback = callbacks[5]
+        self.message_callback = callbacks[6]
 
     def init_train_params(self):
         self.params_callback(self.train_params)
@@ -30,6 +31,9 @@ class Program:
 
     def get_train_param(self, param_id):
         return self.train_params[param_id][1]
+
+    def init_vis(self):
+        pass
 
     def train(self):
         pass

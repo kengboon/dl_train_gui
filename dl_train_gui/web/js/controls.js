@@ -1,3 +1,17 @@
+function PreventUnload()
+{
+    window.onbeforeunload = function(e)
+    {
+        let startBtn = document.getElementById("start_train_btn");
+        if (startBtn.disabled)
+        {
+            e.preventDefault();
+            e.returnValue = "";
+            return false;
+        }
+    }
+}
+
 // Called once after initialized
 function UpdateControls()
 {
@@ -76,7 +90,7 @@ function UpdateLayouts()
     document.getElementById("train_param_content").style.maxHeight = window.innerHeight * .5;
     document.getElementById("history_content_table").style.height = window.innerHeight * .3;
     document.getElementById("history_content_table").style.overflow = "auto";
-    document.getElementById("line-chart").style.height = window.innerHeight * .35;
+    document.getElementById("line-charts-grid").style.height = window.innerHeight * .4;
 }
 
 // Create training parameter form inputs
@@ -235,8 +249,11 @@ function CreateTableRow(epoch, perfInfo, isCheckpoint, checkpointInfo)
     }
     CreateTableCell(row, checkpointInfo);
 
-    let container = document.getElementById("history_content_table");
-    container.scrollTop = container.scrollHeight;
+    if (document.getElementById("history-table-autoscroll").checked)
+    {
+        let container = document.getElementById("history_content_table");
+        container.scrollTop = container.scrollHeight;
+    }
 }
 
 function CreateTableCell(row, content, index=null)
@@ -266,4 +283,35 @@ function SetTrainOperationBtnState(isEnabled)
     startBtn.disabled = !isEnabled;
     let abortBtn = document.getElementById("abort_train_btn");
     abortBtn.disabled = isEnabled;
+}
+
+function ResetHistoryDisplay()
+{
+    ClearTableRow();
+    ClearLineCharts();
+    ExpandHistorySection();
+    eel.init_vis();
+}
+
+function ExpandHistorySection(scrollTo=null)
+{
+    let contents = ["train_param_content", "history_content", "vis_content"];
+    let displays = ["none", "block", "block"];
+    for (let i=0; i < contents.length; i++)
+    {
+        let content = document.getElementById(contents[i]);
+        if (content.style.display != displays[i])
+        {
+            let button = content.previousElementSibling;
+            button.click();
+        }
+    }
+    if (scrollTo != null)
+    {
+        document.getElementById(scrollTo).scrollIntoView();
+    }
+    else if (contents.length > 0)
+    {
+        document.getElementById(contents[0]).scrollIntoView();
+    }
 }

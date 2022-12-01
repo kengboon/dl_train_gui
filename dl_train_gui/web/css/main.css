@@ -84,6 +84,13 @@ button#abort_train_btn
     margin: .25em 0 .5em;
 }
 
+#line-charts-grid
+{
+    display: grid;
+    gap: 0;
+    grid-template-columns: 100%;
+}
+
 /* Loading spinner (from https://projects.lukehaas.me/css-loaders/) */
 
 .loading-spinner-wrapper

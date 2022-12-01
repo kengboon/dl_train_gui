@@ -56,7 +56,7 @@ function StartTrain()
     {
         SetTrainParamsEnabled(false);
         UpdateTrainParams();
-        ClearTableRow();
+        ResetHistoryDisplay();
         eel.start_train();
     }
 }

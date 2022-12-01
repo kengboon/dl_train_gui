@@ -2,7 +2,7 @@
     <head>
         <title>Deep Learning Training GUI</title>
         <link rel="icon" href="img/neural_net.ico"></link>
-        <script type="text/javascript" src="/eel.js"></script>
+        <script type="text/javascript" src="eel.js"></script>
         <script type="text/javascript" src="js/libs/billboard.pkgd.min.js"></script>
         <script type="text/javascript" src="js/callbacks.js"></script>
         <script type="text/javascript" src="js/controls.js"></script>
@@ -13,7 +13,7 @@
         <link rel="stylesheet" href="css/general.css"></link>
         <link rel="stylesheet" href="css/main.css"></link>
     </head>
-    <body onload="RunInit()" onresize="UpdateLayouts()">        
+    <body onload="PreventUnload();RunInit()" onresize="UpdateLayouts()">
         <div id="spinner-root" class="loading-spinner-wrapper">
             <div>
                 <div class="loading-spinner"></div>
@@ -51,9 +51,10 @@
         </section>
         <section id="history_section">
             <button type="button" class="collapsible title">Histories</button>
-            <div class="collapsible-content" id="history_content"style="display:block">
+            <div class="collapsible-content" id="history_content"style="display:none">
                 <div id="history_content_btn">
                     <button onclick="ExportHistories()">Export to CSV</button>
+                    <input type="checkbox" id="history-table-autoscroll" checked>Auto scroll</input>
                 </div>
                 <div id="history_content_table">
                     <table id="history_table"></table>
@@ -63,7 +64,7 @@
         <section id="vis-section">
             <button type="button" class="collapsible title">Visualization</button>
             <div class="collapsible-content" id="vis_content" style="display: none;">
-                <div id="line-chart"></div>
+                <div id="line-charts-grid"></div>
             </div>
         </section>
         <section id="messagelog-section">

@@ -83,13 +83,28 @@ eel.expose(JsEpochEndCallback)
 function JsEpochEndCallback(epoch, perfInfo, isCheckpoint=null, checkpointInfo="")
 {
     CreateTableRow(epoch, perfInfo, isCheckpoint, checkpointInfo);
-    UpdateLineChart(epoch, perfInfo);
+}
+
+eel.expose(JsInitVisCallback);
+function JsInitVisCallback(count=1, type="line")
+{
+    switch (type)
+    {
+        case "line":
+            InitLineChartDisplay(count);
+            break;
+    }
 }
 
 eel.expose(JsVisCallback)
-function JsVisCallback()
+function JsVisCallback(visID, rows, columns, type="line")
 {
-
+    switch (type)
+    {
+        case "line":
+            UpdateLineChart(visID, rows, columns);
+            break;
+    }
 }
 
 eel.expose(JsMessageCallback)

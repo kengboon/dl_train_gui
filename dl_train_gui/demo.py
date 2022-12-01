@@ -3,9 +3,10 @@ import eel
 from dl_train_gui.common import Status
 from dl_train_gui.prog import Program
 
+# This is a dummy program to simulate training, you should implement the real training code
 class DemoProgram(Program):
     def init_train_params(self):
-        # Implement initialize training paramters here
+        # Implement initialize training parameters here
         self.train_params['train_data'] = ['Train dataset', r'd:/data/train', 'dir']
         self.train_params['val_data'] = ['Validation dataset', r'd:/data/val', 'dir']
         self.train_params['max_epoch'] = ['Max epoch', 100, 'int', 1, 9999999]
@@ -27,7 +28,11 @@ class DemoProgram(Program):
 
     def set_train_params(self, param_dict):
         super().set_train_params(param_dict)
-        # Implement setting training paramters here
+        # Implement setting training parameters here
+
+    def init_vis(self):
+        # Optional: initialize chart areas on UI
+        self.init_vis_callback(2, 'line')
 
     def train(self):
         self.set_status(Status.TRAINING)
@@ -55,6 +60,7 @@ class DemoProgram(Program):
                     progress = progress + marker
                 progress = '[' + progress + ']'
                 progress = progress + ' {:.4f}'.format(timeit.default_timer() - start_t) + 's/step'
+                # Signal progress of current epoch
                 self.epoch_callback(i+1, self.get_train_param('max_epoch'), progress)
                 start_t = timeit.default_timer()
                 eel.sleep(.1)
@@ -63,12 +69,22 @@ class DemoProgram(Program):
             acc = self.random_uptrend(acc)
             val_loss = self.random_downtrend(val_loss)
             val_acc = self.random_uptrend(val_acc)
+            # Signal performance of the epoch completed
             self.epoch_end_callback(i+1, {\
                 'loss': loss,\
                 'accuracy': acc,\
                 'val_loss': val_loss,\
                 'val_accuracy': val_acc\
             }, is_checkpoint, 'Model saved' if is_checkpoint else '')
+            # Signal data to be ploted on UI
+            self.vis_callback('0', i+1, {\
+                'loss': loss,\
+                'val_loss': val_loss\
+            }, 'line')
+            self.vis_callback('1', i+1, {\
+                'accuracy': acc,\
+                'val_accuracy': val_acc\
+            }, 'line')
         self.set_status(Status.END)
 
     def random_downtrend(self, prev, min=0):

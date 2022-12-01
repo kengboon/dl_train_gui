@@ -57,10 +57,14 @@ def does_folder_exist(path):
 def init():
     if UI.program is None:
         UI.program = create_default_program()
-        callbacks = [status_callback, init_params_callback, epoch_callback, epoch_end_callback, vis_callback, message_callback]
-        UI.program.hook(callbacks)
-        UI.program.init_train_params()
+    callbacks = [status_callback, init_params_callback, epoch_callback, epoch_end_callback, init_vis_callback, vis_callback, message_callback]
+    UI.program.hook(callbacks)
+    UI.program.init_train_params()
     eel.JsInitCompCallback();
+
+@eel.expose
+def init_vis():
+    UI.program.init_vis()
 
 @eel.expose
 def start_train():
@@ -97,8 +101,11 @@ def epoch_callback(cur_epoch, max_epoch, progress=''):
 def epoch_end_callback(i, perf_info, is_checkpoint=None, checkpoint_info=''):
     eel.JsEpochEndCallback(i, perf_info, is_checkpoint, checkpoint_info)
 
-def vis_callback():
-    eel.JsVisCallback()
+def init_vis_callback(count, type='line'):
+    eel.JsInitVisCallback(count, type)
+
+def vis_callback(vis_id, rows, columns, type='line'):
+    eel.JsVisCallback(vis_id, rows, columns, type)
 
 def message_callback(msg, type='info'):
     eel.JsMessageCallback(msg, type)
