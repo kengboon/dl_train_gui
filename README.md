@@ -11,6 +11,8 @@ Chart(s) are created using [billboard.js](https://github.com/naver/billboard.js)
 ## Usage
 Inherit from or override the [```Program```](https://github.com/kengboon/dl_train_gui/blob/dev/dl_train_gui/prog.py) class (see [sample](https://github.com/kengboon/dl_train_gui/blob/dev/dl_train_gui/demo.py)).
 
+<b><i>The code at the sample is a dummy program that simulate training, you should implement the real training code.</i></b>
+
 Create instance of program [here](https://github.com/kengboon/dl_train_gui/blob/dev/dl_train_gui/util.py).
 
 ```Python
