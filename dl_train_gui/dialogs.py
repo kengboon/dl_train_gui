@@ -3,7 +3,7 @@ from tkinter import Tk
 from tkinter.filedialog import askopenfilename, askdirectory, askopenfilenames, asksaveasfilename
 
 
-def ask_file(file_type):
+def ask_file(file_type=''):
     """ Ask the user to select a file """
     root = Tk()
     root.withdraw()

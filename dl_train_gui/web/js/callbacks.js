@@ -73,6 +73,10 @@ function JsTrainParamCallback(id, caption, value, type=null, min=0, max=1, step=
             CreateDirectoryPathInput(id, caption, value);
             break;
 
+        case "file":
+            CreateFilePathInput(id, caption, value);
+            break;
+
         default:
             CreateTextInput(id, caption, value);
             break;

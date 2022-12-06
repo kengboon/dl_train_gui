@@ -7,14 +7,15 @@ from dl_train_gui.prog import Program
 class DemoProgram(Program):
     def init_train_params(self):
         # Implement initialize training parameters here
-        self.train_params['train_data'] = ['Train dataset', r'd:/data/train', 'dir']
-        self.train_params['val_data'] = ['Validation dataset', r'd:/data/val', 'dir']
+        self.train_params['train_data'] = ['Train dataset', r'D:/data/train', 'dir']
+        self.train_params['val_data'] = ['Validation dataset', r'D:/data/val', 'dir']
         self.train_params['max_epoch'] = ['Max epoch', 100, 'int', 1, 9999999]
         self.train_params['batch_size'] = ['Batch size', 2, 'int', 1, 9999999]
         self.train_params['lr'] = ['Learning rate', 0.01, 'float', 0.001, 1, 0.001]
         self.train_params['optimizer'] = ['Optimizer', 'Adam', 'choices', None, None, None, ['Adam', 'RMSProp', 'SGD']]
         self.train_params['num_of_classes'] = ['Number of classes', 5, 'int', 2, 9999999]
-        self.train_params['output_dir'] = ['Output directory', r'd:/data/model/output', 'dir']
+        self.train_params['pretrained_weight'] = ['Pretrained weight', r'D:/model/pretrained/weight.h5', 'file']
+        self.train_params['output_dir'] = ['Output directory', r'D:/model/output', 'dir']
         self.train_params['lrdecay_section'] = ['Learning Rate Decay', None, 'title']
         self.train_params['lrdecay_enabled'] = ['Enabled', True, 'bool']
         self.train_params['lrdecay_patience_improvement'] = ['Min improvement (loss)', 0.001, 'float', 0.001, 1, 0.001]
