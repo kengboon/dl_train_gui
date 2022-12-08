@@ -25,7 +25,7 @@ Following implementations required:
 - ```set_train_params``` - set the values of hyperparameters from UI form into training code
 - ```train``` - the entry point of training code
 
-And hooked to callbacks below:
+And hook to callbacks below:
 - ```status_callback``` - to update the training status such as running, error, cancelled, etc. to UI
 - ```epoch_callback``` - to update the epoch count and progress to UI
 - ```epoch_end_callback``` - to indicate end of epoch and record performance
