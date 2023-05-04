@@ -321,10 +321,15 @@ function SetTrainParamsEnabled(isEnabled)
     let params = document.forms["train_params"].getElementsByTagName("p");
     for (let i = 0; i < params.length; i++)
     {
-        let inputs = params[i].getElementsByTagName("input");
-        for (let j = 0; j < inputs.length; j++)
+        let elem = params[i].getElementsByTagName("input");
+        for (let j = 0; j < elem.length; j++)
         {
-            inputs[j].disabled = !isEnabled;
+            elem[j].disabled = !isEnabled;
+        }
+        elem = params[i].getElementsByTagName("button");
+        for (let j = 0; j < elem.length; j++)
+        {
+            elem[j].disabled = !isEnabled;
         }
     }
 }
